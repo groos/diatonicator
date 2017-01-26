@@ -63,6 +63,7 @@ var diatonicChord = function (scale, rootIndex){
 	
 	if (majorThird && majorSeventh && perfectFifth){
 		// M7
+		return teoria.note(scale.notes()[rootIndex].chord('M7')) // something like this
 	} else if (!majorThird && !majorSeventh && perfectFifth) {
 		// m7
 	} else if (majorThird && !majorSeventh && perfectFifth) {
@@ -87,7 +88,7 @@ var getIntervalNotes = function (scale, rootIndex, interval){
 	}
 	
 	var rootNote = scale.notes()[modInterval(rootIndex)];
-	var intervalNote = scale.notes()[modInterval(interval)];
+	var intervalNote = scale.notes()[modInterval(rootIndex + interval)];
 	
 	return {
 		root : rootNote,
@@ -95,6 +96,11 @@ var getIntervalNotes = function (scale, rootIndex, interval){
 	};
 };
 
+/*
+
+	TODO - Refactor this to return one object with the 3 chord intervals
+	
+*/
 var majorOrPerfectInterval = function (scale, rootIndex, intervalName){
 	var notes = getIntervalNotes(scale, rootIndex, intervalName)
 	
