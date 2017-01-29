@@ -2,10 +2,14 @@
 var teoria = require('./teoria.js')
 
 var root = 'a4';
-var vamp = 'd4';
+var rootNote = teoria.note(root);
 
-var rootChord = root.chord('m7');
-var vampChord = vamp.chord('7');
+var vamp = 'd4';
+var vampNote = teoria.note(vamp);
+
+
+var rootChord = rootNote.chord('m7');
+var vampChord = vampNote.chord('7');
 
 // ['a', 'c', 'e', 'g']
 var rootArp = rootChord.simple();
@@ -37,7 +41,7 @@ var vampArp = vampChord.simple();
 	use the matching scale to build the list of available chords
 */
 
-var dorian = a4.scale('dorian');
+var dorian = rootNote.scale('dorian');
 // dorian.scale = [ 'P1', 'M2', 'm3', 'P4', 'P5', 'M6', 'm7' ]
 
 var root = dorian.notes()[0];
@@ -45,9 +49,9 @@ var third = dorian.notes()[2];
 var fifth = dorian.notes()[4];
 var seventh = dorian.notes()[6];
 
-var interval1 = t.interval(root, third); // 'm3'
-var interval2 = t.interval(root, fifth); // 'P5'
-var interval3 = t.interval(root, seventh); // 'm7'
+var interval1 = teoria.interval(root, third); // 'm3'
+var interval2 = teoria.interval(root, fifth); // 'P5'
+var interval3 = teoria.interval(root, seventh); // 'm7'
 
 /*
 	now we have enough information to determine that the root chord is a minor7
@@ -112,3 +116,15 @@ var majorOrPerfectInterval = function (scale, rootIndex, intervalName){
 		}
 	}
 };
+
+function Diatonic(){
+	this.root = teoria.note('a4');
+	this.scale = this.root.scale('dorian');
+};
+
+Diatonic.prototype = {
+	majorPerfect: majorOrPerfectInterval,
+	chord: diatonicChord
+};
+
+module.exports = Diatonic;
