@@ -1,5 +1,5 @@
 
-var teoria = require('./teoria.js')
+var teoria = require('./teoria')
 
 var root = 'a4';
 var rootNote = teoria.note(root);
@@ -120,8 +120,11 @@ var majorOrPerfectInterval = function (scale, rootIndex, intervalName){
 };
 
 function Diatonic(){
-	this.root = teoria.note('a4');
-	this.scale = this.root.scale('dorian');
+	var self = this;
+	self.root = teoria.note('a4');
+	self.scale = self.root.scale('dorian');
+
+	return self;
 };
 
 Diatonic.prototype = {
@@ -129,4 +132,4 @@ Diatonic.prototype = {
 	chord: diatonicChord
 };
 
-module.exports = Diatonic;
+module.exports = new Diatonic();
