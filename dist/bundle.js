@@ -28907,11 +28907,12 @@ var majorOrPerfectInterval = function (scale, rootIndex, intervalName){
 };
 
 function Diatonic(){
-	var self = this;
-	self.root = teoria.note('a4');
-	self.scale = self.root.scale('dorian');
+	this.root = teoria.note('a4');
+	this.scale = this.root.scale('dorian');
 
-	return self;
+	this.chordAt = function(index){
+		return this.chord(this.scale, index);
+	};
 };
 
 Diatonic.prototype = {
@@ -28984,9 +28985,6 @@ var _ = __webpack_require__(2);
 var _teoriaPlay = __webpack_require__(3);
 var _teoria = __webpack_require__(0);
 var $ = __webpack_require__(1);
-
-//var diatonic = new _teoriaPlay();
-//var teoria = new _teoria();
 
 $('.output').html("jquery!");
 
