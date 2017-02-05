@@ -67,11 +67,13 @@ var diatonicChord = function (scale, rootIndex){
 	
 	if (majorThird && majorSeventh && perfectFifth){
 		// M7
-		return teoria.note(scale.notes()[rootIndex].chord('M7')) // something like this
+		return scale.notes()[rootIndex].chord('M7') // something like this
 	} else if (!majorThird && !majorSeventh && perfectFifth) {
 		// m7
+		return scale.notes()[rootIndex].chord('m7')
 	} else if (majorThird && !majorSeventh && perfectFifth) {
 		// 7
+		return scale.notes()[rootIndex].chord('7')
 	}
 };
 
