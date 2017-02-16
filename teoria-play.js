@@ -1,18 +1,33 @@
 
 var teoria = require('./teoria')
 
-function Diatonic(){
-	this.root = teoria.note('a4');
-	this.scale = this.root.scale('dorian');
-
-	this.chordAt = function(index){
-		return this.diatonicChord(this.scale, index - 1);
-	};
+function Diatonic(root, scale){
+	this.root = teoria.note(root);
+	this.scale = this.root.scale(scale);
 };
 
 Diatonic.prototype = {
-	modInterval: function(interval){
-		return interval % 7;
+	chordAt: function(index){
+		return this.diatonicChord(this.scale, index - 1);
+	},
+	diatonicChord: function (scale, rootIndex){
+		//debugger;
+		var majorThird = this.majorOrPerfectInterval(scale, rootIndex, 'third');
+		var perfectFifth = this.majorOrPerfectInterval(scale, rootIndex, 'fifth');
+		var majorSeventh = this.majorOrPerfectInterval(scale, rootIndex, 'seventh');
+		
+		if (majorThird && majorSeventh && perfectFifth){
+			// M7
+			return scale.notes()[rootIndex].chord('M7'); // something like this
+		} else if (!majorThird && !majorSeventh && perfectFifth) {
+			// m7
+			return scale.notes()[rootIndex].chord('m7');
+		} else if (majorThird && !majorSeventh && perfectFifth) {
+			// 7
+			return scale.notes()[rootIndex].chord('7');
+		} else if (!majorThird && !majorSeventh && !perfectFifth){
+			return scale.notes()[rootIndex].chord('m7b5');
+		}
 	},
 	getIntervalNotes: function (scale, rootIndex, interval){
 		//debugger;
@@ -50,22 +65,8 @@ Diatonic.prototype = {
 			}
 		}
 	},
-	diatonicChord: function (scale, rootIndex){
-		//debugger;
-		var majorThird = this.majorOrPerfectInterval(scale, rootIndex, 'third');
-		var perfectFifth = this.majorOrPerfectInterval(scale, rootIndex, 'fifth');
-		var majorSeventh = this.majorOrPerfectInterval(scale, rootIndex, 'seventh');
-		
-		if (majorThird && majorSeventh && perfectFifth){
-			// M7
-			return scale.notes()[rootIndex].chord('M7') // something like this
-		} else if (!majorThird && !majorSeventh && perfectFifth) {
-			// m7
-			return scale.notes()[rootIndex].chord('m7')
-		} else if (majorThird && !majorSeventh && perfectFifth) {
-			// 7
-			return scale.notes()[rootIndex].chord('7')
-		}
+	modInterval: function(interval){
+		return interval % 7;
 	},
 	helloWorld: function(){
 		console.log("hello!");
@@ -73,4 +74,4 @@ Diatonic.prototype = {
 	}
 };
 
-module.exports = new Diatonic();
+module.exports = Diatonic;
