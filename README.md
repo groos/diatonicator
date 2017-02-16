@@ -1,3 +1,17 @@
+Teoria-Player
+-------------
+see original teoria documetation below.
+
+Install dependencies (need to automate this)
+-- Most of these are just dependencies of teoria lib
+npm install
+npn install Browserify
+npm install jquery
+npm install lodash
+npm run build
+
+
+
 Teoria.js
 =========
 
