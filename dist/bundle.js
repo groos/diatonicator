@@ -103,14 +103,19 @@ Diatonic.prototype = {
 	},
 	getIntervalNotes: function (scale, rootIndex, interval){
 		//debugger;
-		if (interval === 'third'){
-			interval = 2;
-		} else if (interval === 'fifth'){
-			interval = 4;
-		} else if (interval === 'seventh'){
-			interval = 6;
-		} else {
-			return "invalid interval name: use 'third', 'fifth', or 'seventh'"
+
+		switch (interval){
+			case 'third':
+				interval = 2;
+				break;
+			case 'fifth':
+				interval = 4;
+				break;
+			case 'seventh':
+				interval = 6;
+				break;
+			default:
+				return "invalid interval name: use 'third', 'fifth', or 'seventh'"
 		}
 
 		var rootNote = scale.notes()[this.modInterval(rootIndex)];
