@@ -25,7 +25,7 @@
     "test": "vows --dot-matric test/*",
     "lint": "jshint index.js lib/",
     "bundle": "browserify index.js --standalone teoria > teoria.js",
-    "build": "npm run lint && npm test && npm run bundle && webpack"
+    "build": "npm run bundle && webpack"
   },
   "devDependencies": {
     "jshint": ">=0.9.0",
