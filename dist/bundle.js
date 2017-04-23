@@ -12341,12 +12341,11 @@ var buildScalesPicker = function(){
   var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper', 'css' : {'width' : '200px', 'border-style' : 'solid'}})
 
   scales.forEach(function(scale){
-    var scaleItem = $('<span />', {'class' : 'scale-item', 'text' : scale.name, 'css' : {}});
+    var scaleItem = $('<span />', {'class' : 'scale-item', 'text' : scale, 'css' : {}});
     scaleItem.appendTo(dropdownWrapper);
   }, this);
 
   dropdownWrapper.appendTo($wrapper);
-  debugger;
 };
 
 document.body.appendChild(component());
