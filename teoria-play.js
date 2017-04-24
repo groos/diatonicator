@@ -72,10 +72,6 @@ Diatonic.prototype = {
 	},
 	modInterval: function(interval){
 		return interval % 7;
-	},
-	helloWorld: function(){
-		console.log("hello!");
-		return "Hello!";
 	}
 };
 

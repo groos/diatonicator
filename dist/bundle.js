@@ -12324,6 +12324,7 @@ var _diatonicator = __webpack_require__(1);
 var _scales = __webpack_require__(2);
 var scales = _scales.KNOWN_SCALES;
 var $wrapper = $('.wrapper');
+var $results = $('.results-wrapper');
 
 function component () {
   var element = document.createElement('div');
@@ -12340,15 +12341,36 @@ function component () {
 var buildScalesPicker = function(){
   var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper', 'css' : {'width' : '200px', 'border-style' : 'solid'}})
 
-  scales.forEach(function(scale){
-    var scaleItem = $('<span />', {'class' : 'scale-item', 'text' : scale, 'css' : {}});
+  scales.forEach(function(name){
+
+    // create a list item for the picker
+    var scaleItem = $('<div />', {'data-scale' : name, 'class' : 'scale-item', 'css' : {'border-style' : 'solid'}});
+    scaleItem.html(name);
+
+    scaleItem.click(handleScaleClick.bind(this));
+    
     scaleItem.appendTo(dropdownWrapper);
   }, this);
 
   dropdownWrapper.appendTo($wrapper);
 };
 
+var handleScaleClick = function(e){
+  var diatonic = new _diatonicator('a4', $(e.target).data('scale'));
+
+  if (diatonic){
+    for (i = 1; i < 8; i++){
+
+      var chord = $('<div />');
+      chord.html('<div>Interval: ' + i + ' | ' + diatonic.chordAt(i).name + '</div>');
+      chord.appendTo($results);
+    }
+  }
+};
+
 document.body.appendChild(component());
+
+
 buildScalesPicker();
 
 /***/ })
