@@ -4,6 +4,32 @@ var _scales = require('../lib/scale');
 var scales = _scales.KNOWN_SCALES;
 var $wrapper = $('.wrapper');
 var $results = $('.results-wrapper');
+var Vex = require('vexflow');
+
+
+/*
+
+This code is verbose in order to be pedantic
+
+
+*/
+
+var vf = new Vex.Flow.Factory({
+  renderer: {selector: 'notation', width: 500, heith: 200}
+});
+
+var score = vf.EasyScore();
+var system = vf.System();
+
+system.addStave({
+  voices: [
+    score.voice(score.notes('C#5/q, B4, A4, G#4', {stem: 'up'})),
+    score.voice(score.notes('C#4/h, C#4', {stem: 'down'}))
+  ]
+}).addClef('treble').addTimeSignature('4/4');
+
+vf.draw();
+
 
 function component () {
   var element = document.createElement('div');
@@ -35,16 +61,39 @@ var buildScalesPicker = function(){
 };
 
 var handleScaleClick = function(e){
+  clearResults();
   var diatonic = new _diatonicator('a4', $(e.target).data('scale'));
 
   if (diatonic){
     for (i = 1; i < 8; i++){
 
-      var chord = $('<div />');
-      chord.html('<div>Interval: ' + i + ' | ' + diatonic.chordAt(i).name + '</div>');
-      chord.appendTo($results);
+      var chordData = diatonic.chordAt(i);
+
+      if (chordData){
+        var chord = $('<div />', { 'class' : 'chord-details'});
+        chord.html('<div>Interval: ' + i + ' | ' + chordData.name + '</div>');
+        chord.appendTo($results);
+
+        var notes = chordData.notes();
+
+        // TODO - build the EasyScore string for vexflow - something like: 'C#5/q, B4, A4, G#4'
+        notes.forEach(function(note){
+          var name = note.toString();
+          console.log(name);
+          
+          
+          // TODO add the voicing to vexflow
+        });
+      }
     }
   }
+};
+
+var clearResults = function(){
+  var wrapper = $('.results-wrapper');
+  wrapper.find('.chord-details').remove();
+
+  // TODO - reset vexflow staff
 };
 
 //document.body.appendChild(component());
