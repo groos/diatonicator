@@ -28,6 +28,8 @@
     "build": "npm run bundle && webpack"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.8",
     "jshint": ">=0.9.0",
     "vows": ">= 0.6.0",
     "webpack": "^2.2.1"

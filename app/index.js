@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var _teoria = require('../teoria');
 var _diatonicator = require('../diatonicator');
 var _scales = require('../lib/scale');
 var scales = _scales.KNOWN_SCALES;
@@ -46,9 +47,11 @@ function component () {
 var buildScalesPicker = function(){
   var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper', 'css' : {'width' : '200px', 'border-style' : 'solid'}})
 
-  scales.forEach(function(name){
+  // get each note in the chromatic scale
+  // add it to a dropdown
+  var cNote = _teoria.note('c4');
 
-    // create a list item for the picker
+  scales.forEach(function(name){
     var scaleItem = $('<div />', {'data-scale' : name, 'class' : 'scale-item', 'css' : {'border-style' : 'solid'}});
     scaleItem.html(name);
 
@@ -85,17 +88,17 @@ var handleScaleClick = function(e){
           // TODO add the voicing to vexflow
         });
       }
-    }
+    } 
   }
 };
-
+ 
 var clearResults = function(){
   var wrapper = $('.results-wrapper');
   wrapper.find('.chord-details').remove();
-
-  // TODO - reset vexflow staff
+ 
+  // TODO - reset vexflow staff 
 };
 
-//document.body.appendChild(component());
+//document.body.appendChild(component()); 
 
-buildScalesPicker();
+buildScalesPicker(); 
