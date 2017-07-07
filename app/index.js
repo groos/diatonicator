@@ -93,12 +93,11 @@ var handleScaleClick = function(e){
 };
  
 var clearResults = function(){
-  var wrapper = $('.results-wrapper');
-  wrapper.find('.chord-details').remove();
+  $results.find('*').off();
+  $results.off().empty();
+  $results.append(html);
  
-  // TODO - reset vexflow staff 
+  // TODO - reset vexflow staff
 };
-
-//document.body.appendChild(component()); 
 
 buildScalesPicker(); 

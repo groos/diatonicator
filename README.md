@@ -9,6 +9,7 @@ npn install Browserify
 npm install jquery
 npm install lodash
 npm install vexflow
+npm install webpack-stream
 npm run build
 
 
