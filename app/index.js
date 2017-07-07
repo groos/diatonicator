@@ -1,19 +1,16 @@
 var $ = require('jquery');
 var _teoria = require('../teoria');
 var _diatonicator = require('../diatonicator');
-var _scales = require('../lib/scale');
-var scales = _scales.KNOWN_SCALES;
-var $wrapper = $('.wrapper');
-var $results = $('.results-wrapper');
+var _scale = require('../lib/scale');
+var scales = _scale.KNOWN_SCALES;
+var $keysWrapper = $('.keys-wrapper');
+var $scalesWrapper = $('.scales-wrapper');
+var $resultsWrapper = $('.results-wrapper');
+
+var _tonic = "c4";
+
+///////////////////////// Vex Staff Notation /////////////////////////
 var Vex = require('vexflow');
-
-
-/*
-
-This code is verbose in order to be pedantic
-
-
-*/
 
 var vf = new Vex.Flow.Factory({
   renderer: {selector: 'notation', width: 500, heith: 200}
@@ -29,28 +26,39 @@ system.addStave({
   ]
 }).addClef('treble').addTimeSignature('4/4');
 
-vf.draw();
+//vf.draw();
+///////////////////////// Vex Staff Notation /////////////////////////
 
+var build = function(){
+  buildRootPicker();
+  buildScalesPicker();
+};
 
-function component () {
-  var element = document.createElement('div');
+var buildRootPicker = function(){
+  var keys = $('<div />', { 'class' : 'keys picker'})
 
-  var diatonicator = new _diatonicator('a4', 'mixolydian');
+  // get the chromatic scale starting at some c4
+  var middleC = _teoria.note('c4');
+  var chromatic = middleC.scale('chromatic');
+  chromatic.scale.forEach(function(interval){
+    var name = chromatic.interval(interval).get('unison').toString();
+    
+    var note = $('<div />', {'data-note' : name, 'class' : 'note-item picker'});
+    note.html('<span> ' + name + '</span>');
+    note.click(chooseRoot.bind(this));
+    note.appendTo(keys);
+  }.bind(this));
 
-  for (i = 1; i < 8; i++){
-    console.log(diatonicator.chordAt(i));
-  }
+  keys.appendTo($keysWrapper);
+};
 
-  return element
-}
+var chooseRoot = function(note){
+  _root = note.target ? note : "c4";
+};
 
 var buildScalesPicker = function(){
-  var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper', 'css' : {'width' : '200px', 'border-style' : 'solid'}})
-
-  // get each note in the chromatic scale
-  // add it to a dropdown
-  var cNote = _teoria.note('c4');
-
+  var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper picker'})
+  
   scales.forEach(function(name){
     var scaleItem = $('<div />', {'data-scale' : name, 'class' : 'scale-item', 'css' : {'border-style' : 'solid'}});
     scaleItem.html(name);
@@ -60,12 +68,12 @@ var buildScalesPicker = function(){
     scaleItem.appendTo(dropdownWrapper);
   }, this);
 
-  dropdownWrapper.appendTo($wrapper);
+  dropdownWrapper.appendTo($scalesWrapper);
 };
 
 var handleScaleClick = function(e){
   clearResults();
-  var diatonic = new _diatonicator('a4', $(e.target).data('scale'));
+  var diatonic = new _diatonicator(getTonic(), $(e.target).data('scale'));
 
   if (diatonic){
     for (i = 1; i < 8; i++){
@@ -75,7 +83,7 @@ var handleScaleClick = function(e){
       if (chordData){
         var chord = $('<div />', { 'class' : 'chord-details'});
         chord.html('<div>Interval: ' + i + ' | ' + chordData.name + '</div>');
-        chord.appendTo($results);
+        chord.appendTo($resultsWrapper);
 
         var notes = chordData.notes();
 
@@ -93,11 +101,16 @@ var handleScaleClick = function(e){
 };
  
 var clearResults = function(){
-  $results.find('*').off();
-  $results.off().empty();
-  $results.append(html);
+  $resultsWrapper.find('*').off();
+  $resultsWrapper.off().empty();
  
-  // TODO - reset vexflow staff
+  // TODO - reset vexflow staff 
 };
 
-buildScalesPicker(); 
+var getTonic = function(){
+  return _tonic;
+};
+
+
+
+build();

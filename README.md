@@ -2,16 +2,13 @@ Teoria-Player
 -------------
 see original teoria documetation below.
 
-Install dependencies (need to automate this)
+Install dependencies
 -- Most of these are just dependencies of teoria lib
 npm install
-npn install Browserify
-npm install jquery
-npm install lodash
-npm install vexflow
-npm install webpack-stream
 npm run build
 
+Gulp Task (just one default task for now)
+> gulp 
 
 
 Teoria.js
