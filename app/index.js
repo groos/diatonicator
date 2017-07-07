@@ -35,6 +35,8 @@ var buildScalesPicker = function(){
 };
 
 var handleScaleClick = function(e){
+  clearResults();
+  
   var diatonic = new _diatonicator('a4', $(e.target).data('scale'));
 
   if (diatonic){
@@ -45,6 +47,12 @@ var handleScaleClick = function(e){
       chord.appendTo($results);
     }
   }
+};
+
+var clearResults = function() {
+  $results.find('*').off();
+  $results.off().empty();
+  $results.append(html);
 };
 
 //document.body.appendChild(component());
