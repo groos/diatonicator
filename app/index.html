@@ -5,13 +5,10 @@
         <script src="../dist/bundle.js"></script>
     </head>
     <body>
-        <div class="keys-wrapper"></div>
-        <div class="scales-wrapper"></div>
-        <div class="results-wrapper"></div>
-        <div id="notation"></div>
-
+        
         <div ng-controller="diatonicController as diatonicator">
             <h4>Tonic: {{diatonicator._tonic}}</h4>
+            <h4>Mode: {{diatonicator._scale}}</h4>
             <div class="tonic-wrapper">
                 <div ng-repeat="tonic in diatonicator._tonics">
                     <span ng-click="diatonicator.setTonic(tonic.name)">{{tonic.name}}</span>
@@ -30,6 +27,9 @@
                 </div>
             </div>
         </div>
+
+        <div id="notation"></div>
+
     </body>
 </html>
 

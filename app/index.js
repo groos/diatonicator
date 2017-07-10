@@ -1,15 +1,23 @@
 angular.module('diatonicator', [])
   .controller('diatonicController', function(){
     var $ = require('jquery');
-    var _teoria = require('../teoria');
-    var _diatonicator = require('../diatonicator');
-    var _scale = require('../lib/scale');
+    var Teoria = require('../teoria');
+    var Diatonicator = require('../diatonicator');
+    var Scale = require('../lib/scale');
+    var VexChords = require('../lib/vexchords/chord.js');
+
+    // vex chords stuff
+    var notation = $('#notation');
+    var Raphael = require('../lib/raphael/raphael.js');
+    var paper = Raphael(notation, 150, 140);
+    var chord = new ChordBox(paper, 30, 30);
     
+
     var diatonicator = this;
     diatonicator._tonic = "C";
     diatonicator._scale = "major";
 
-    var chromatic = _teoria.note(diatonicator._tonic).scale('chromatic');
+    var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
 
     var formatTonicName = function (name) {
       if (name) {
@@ -22,7 +30,7 @@ angular.module('diatonicator', [])
 
       diatonicator._scale = scaleName;
 
-      var diatonic = new _diatonicator(getTonic(), scaleName);
+      var diatonic = new Diatonicator(getTonic(), scaleName);
       diatonicator.results = [];
 
       if (diatonic){
@@ -61,9 +69,9 @@ angular.module('diatonicator', [])
           name: name ? formatTonicName(name) : "could not get name",
           interval: index + 1
         };
-    }.bind(this));
+    });
 
-    diatonicator._scales = _scale.KNOWN_SCALES.map(function (scaleName) {
+    diatonicator._scales = Scale.KNOWN_SCALES.map(function (scaleName) {
       return {
         name: scaleName
       };
