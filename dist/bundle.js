@@ -35374,26 +35374,77 @@ angular.module('diatonicator', [])
     var _teoria = __webpack_require__(0);
     var _diatonicator = __webpack_require__(2);
     var _scale = __webpack_require__(3);
-
+    
     var diatonicator = this;
+    diatonicator._tonic = "C";
+    diatonicator._scale = "major";
 
-    diatonicator._tonic = "c4";
-    var middleC = _teoria.note(diatonicator._tonic);
-    var chromatic = middleC.scale('chromatic');
-    diatonicator._tonics = chromatic.scale.map(function(interval, index){
+    var chromatic = _teoria.note(diatonicator._tonic).scale('chromatic');
+
+    var formatTonicName = function (name) {
+      if (name) {
+        return name.charAt(0).toUpperCase() + name.slice(1).replace(/[0-9]/g, '');
+      }
+    };
+
+    diatonicator.handleScaleClick = function(scaleName){
+      clearResults();
+
+      diatonicator._scale = scaleName;
+
+      var diatonic = new _diatonicator(getTonic(), scaleName);
+      diatonicator.results = [];
+
+      if (diatonic){
+        for (i = 1; i < 8; i++){
+          var chord = diatonic.chordAt(i);
+          chord.interval = i;
+          diatonicator.results.push(chord);
+        }
+      }
+    };
+
+    var updateResults = function() {
+      diatonicator.handleScaleClick(getActiveScale());
+    };
+     
+    var clearResults = function(){
+      diatonicator.results = [];
+    };
+
+    var getActiveScale = function() {
+      return diatonicator._scale;
+    };
+
+    var getTonic = function () {
+      return diatonicator._tonic;
+    };
+
+    diatonicator.setTonic = function(noteName) {
+      diatonicator._tonic = noteName;
+      updateResults();
+    };
+
+    diatonicator._tonics = chromatic.scale.map(function (interval, index) {
+        var name = chromatic.interval(interval).get('unison').toString();
+        return {
+          name: name ? formatTonicName(name) : "could not get name",
+          interval: index + 1
+        };
+    }.bind(this));
+
+    diatonicator._scales = _scale.KNOWN_SCALES.map(function (scaleName) {
       return {
-        name : chromatic.interval(interval).get('unison').toString(),
-        interval : index + 1
+        name: scaleName
       };
     });
 
-    diatonicator._scales = _scale.KNOWN_SCALES.map(function(scaleName){
-      return {
-        name : scaleName
-      };
-    });
 
-    ///////////////////////// Vex Staff Notation /////////////////////////
+
+
+
+
+        ///////////////////////// Vex Staff Notation /////////////////////////
     var Vex = __webpack_require__(5);
 
     var vf = new Vex.Flow.Factory({
@@ -35412,32 +35463,6 @@ angular.module('diatonicator', [])
 
     //vf.draw();
     ///////////////////////// Vex Staff Notation /////////////////////////
-
-    diatonicator.handleScaleClick = function(scaleName){
-      clearResults();
-      var diatonic = new _diatonicator(getTonic(), scaleName);
-      diatonicator.results = [];
-
-      if (diatonic){
-        for (i = 1; i < 8; i++){
-          var chord = diatonic.chordAt(i);
-          chord.interval = i;
-          diatonicator.results.push(chord);
-        }
-      }
-    };
-     
-    var clearResults = function(){
-      diatonicator.results = [];
-    };
-
-    var getTonic = function() {
-      return diatonicator._tonic;
-    };
-
-    diatonicator.setTonic = function(noteName) {
-      diatonicator._tonic = noteName;
-    };
   });
 
 /***/ }),
