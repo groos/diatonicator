@@ -4,12 +4,24 @@ angular.module('diatonicator', [])
     var _teoria = require('../teoria');
     var _diatonicator = require('../diatonicator');
     var _scale = require('../lib/scale');
-    var scales = _scale.KNOWN_SCALES;
-    var $keysWrapper = $('.keys-wrapper');
-    var $scalesWrapper = $('.scales-wrapper');
-    var $resultsWrapper = $('.results-wrapper');
 
-    var _tonic = "c4";
+    var diatonicator = this;
+
+    diatonicator._tonic = "c4";
+    var middleC = _teoria.note(diatonicator._tonic);
+    var chromatic = middleC.scale('chromatic');
+    diatonicator._tonics = chromatic.scale.map(function(interval, index){
+      return {
+        name : chromatic.interval(interval).get('unison').toString(),
+        interval : index + 1
+      };
+    });
+
+    diatonicator._scales = _scale.KNOWN_SCALES.map(function(scaleName){
+      return {
+        name : scaleName
+      };
+    });
 
     ///////////////////////// Vex Staff Notation /////////////////////////
     var Vex = require('vexflow');
@@ -31,89 +43,29 @@ angular.module('diatonicator', [])
     //vf.draw();
     ///////////////////////// Vex Staff Notation /////////////////////////
 
-    var build = function(){
-      buildRootPicker();
-      buildScalesPicker();
-    };
-
-    var buildRootPicker = function(){
-      var keys = $('<div />', { 'class' : 'keys picker'})
-
-      // get the chromatic scale starting at some c4
-      var middleC = _teoria.note('c4');
-      var chromatic = middleC.scale('chromatic');
-      chromatic.scale.forEach(function(interval){
-        var name = chromatic.interval(interval).get('unison').toString();
-        
-        var note = $('<div />', {'data-note' : name, 'class' : 'note-item picker'});
-        note.html('<span> ' + name + '</span>');
-        note.click(chooseRoot.bind(this));
-        note.appendTo(keys);
-      }.bind(this));
-
-      keys.appendTo($keysWrapper);
-    };
-
-    var chooseRoot = function(note){
-      _root = note.target ? note : "c4";
-    };
-
-    var buildScalesPicker = function(){
-      var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper picker'})
-      
-      scales.forEach(function(name){
-        var scaleItem = $('<div />', {'data-scale' : name, 'class' : 'scale-item', 'css' : {'border-style' : 'solid'}});
-        scaleItem.html(name);
-
-        scaleItem.click(handleScaleClick.bind(this));
-        
-        scaleItem.appendTo(dropdownWrapper);
-      }, this);
-
-      dropdownWrapper.appendTo($scalesWrapper);
-    };
-
-    var handleScaleClick = function(e){
+    diatonicator.handleScaleClick = function(scaleName){
       clearResults();
-      var diatonic = new _diatonicator(getTonic(), $(e.target).data('scale'));
+      var diatonic = new _diatonicator(getTonic(), scaleName);
+      diatonicator.results = [];
 
       if (diatonic){
         for (i = 1; i < 8; i++){
-
-          var chordData = diatonic.chordAt(i);
-
-          if (chordData){
-            var chord = $('<div />', { 'class' : 'chord-details'});
-            chord.html('<div>Interval: ' + i + ' | ' + chordData.name + '</div>');
-            chord.appendTo($resultsWrapper);
-
-            var notes = chordData.notes();
-
-            // TODO - build the EasyScore string for vexflow - something like: 'C#5/q, B4, A4, G#4'
-            notes.forEach(function(note){
-              var name = note.toString();
-              console.log(name);
-              
-              
-              // TODO add the voicing to vexflow
-            });
-          }
-        } 
+          var chord = diatonic.chordAt(i);
+          chord.interval = i;
+          diatonicator.results.push(chord);
+        }
       }
     };
      
     var clearResults = function(){
-      $resultsWrapper.find('*').off();
-      $resultsWrapper.off().empty();
-     
-      // TODO - reset vexflow staff 
+      diatonicator.results = [];
     };
 
-    var getTonic = function(){
-      return _tonic;
+    var getTonic = function() {
+      return diatonicator._tonic;
     };
 
-
-
-    build();
+    diatonicator.setTonic = function(noteName) {
+      diatonicator._tonic = noteName;
+    };
   });

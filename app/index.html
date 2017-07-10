@@ -10,10 +10,26 @@
         <div class="results-wrapper"></div>
         <div id="notation"></div>
 
-        <div ng-controller="diatonicController"></div>
+        <div ng-controller="diatonicController as diatonicator">
+            <h4>Tonic: {{diatonicator._tonic}}</h4>
+            <div class="tonic-wrapper">
+                <div ng-repeat="tonic in diatonicator._tonics">
+                    <span ng-click="diatonicator.setTonic(tonic.name)">{{tonic.name}}</span>
+                </div>
+            </div>
 
+            <div class="scales-wrapper">
+                <div ng-repeat="scale in diatonicator._scales">
+                    <span ng-click="diatonicator.handleScaleClick(scale.name)">{{scale.name}}</span>
+                </div>
+            </div>
 
-       
+            <div class="results-wrapper">
+                <div ng-repeat="chord in diatonicator.results">
+                    <span>{{chord.interval}} : </span><span>{{chord.name}}</span>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 
