@@ -23,7 +23,7 @@
 
             <div class="results-wrapper">
                 <div ng-repeat="chord in diatonicator.results">
-                    <span>{{chord.interval}} : </span><span>{{chord.name}}</span>
+                    <span>{{chord.interval}} : </span><span  ng-click="diatonicator.handleChordClick(chord)">{{chord.name}}</span>
                 </div>
             </div>
         </div>
