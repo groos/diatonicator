@@ -1,18 +1,40 @@
 <html ng-app="diatonicator">
     <head>
-        <!--<script type="text/javascript" src="teoria-play.js"></script>-->
+    	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
         <script src="../dist/bundle.js"></script>
     </head>
     <body>
-        
+        <div class="container">
         <div ng-controller="diatonicController as diatonicator">
+            <div class="row">
+	            <div class="col-md-12 tonic-wrapper">
+	            <div class="col-md-1" ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
+                	<span>{{tonic.name}}</span>
+            	</div>
+            </div>
+
+            <!-- <div class="dropdown">
+			  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+			  <span class="caret"></span></button>
+			  <ul class="dropdown-menu">
+			    <li ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
+			    	<span>{{tonic.name}}</span>
+			    </li>
+			  </ul>
+			</div> -->
+
             <h4>Tonic: {{diatonicator._tonic}}</h4>
             <h4>Mode: {{diatonicator._scale}}</h4>
-            <div class="tonic-wrapper">
-                <div ng-repeat="tonic in diatonicator._tonics">
-                    <span ng-click="diatonicator.setTonic(tonic.name)">{{tonic.name}}</span>
-                </div>
+
+            <div class="row ">
+	            <div class="col-md-12 results-wrapper">
+	                <div class="chord" ng-repeat="chord in diatonicator.results">
+	                    <span>{{chord.interval}} : </span><span>{{chord.name}}</span>
+	                </div>
+	            </div>
             </div>
 
             <div class="scales-wrapper">
@@ -21,21 +43,29 @@
                 </div>
             </div>
 
-            <div class="results-wrapper">
-                <div ng-repeat="chord in diatonicator.results">
-                    <span>{{chord.interval}} : </span><span  ng-click="diatonicator.handleChordClick(chord)">{{chord.name}}</span>
-                </div>
-            </div>
+            
         </div>
 
         <div id="notation"></div>
-
+        </div>
     </body>
 </html>
 
 <style>
-    .picker {
-        width : 200px;
-        border-style : solid;
+    .tonic-wrapper {
+    	cursor: pointer;
+    	padding-top: 15px;
+    	padding-bottom: 15px;
+    }
+
+
+
+    .results-wrapper {
+    	width: 100%;
+    }
+
+    .chord {
+    	display: inline;
+    	width: 100%;
     }
 </style>

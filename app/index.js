@@ -1,6 +1,8 @@
+var $ = require('jquery');
+
 angular.module('diatonicator', [])
   .controller('diatonicController', function(){
-    var $ = require('jquery');
+    
     var Teoria = require('../teoria');
     var Diatonicator = require('../diatonicator');
     var Scale = require('../lib/scale');
@@ -9,8 +11,8 @@ angular.module('diatonicator', [])
     // vex chords stuff
     var notation = $('#notation');
     var Raphael = require('../lib/raphael/raphael.js');
-    var paper = Raphael(notation, 150, 140);
-    var chord = new ChordBox(paper, 30, 30);
+    //var paper = Raphael(notation, 150, 140);
+    //var chord = new ChordBox(paper, 30, 30);
     
 
     var diatonicator = this;
