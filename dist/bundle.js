@@ -52,6 +52,7 @@
 	    var Teoria = __webpack_require__(2);
 	    var Diatonicator = __webpack_require__(3);
 	    var Scale = __webpack_require__(4);
+	    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
 	    var VexChords = __webpack_require__(9);
 
 	    // vex chords stuff
@@ -119,7 +120,7 @@
 	        };
 	    });
 
-	    diatonicator._scales = Scale.KNOWN_SCALES.map(function (scaleName) {
+	    diatonicator._scales = Modes.map(function (scaleName) {
 	      return {
 	        name: scaleName
 	      };

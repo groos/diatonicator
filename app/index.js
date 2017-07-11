@@ -6,6 +6,7 @@ angular.module('diatonicator', [])
     var Teoria = require('../teoria');
     var Diatonicator = require('../diatonicator');
     var Scale = require('../lib/scale');
+    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
     var VexChords = require('../lib/vexchords/chord.js');
 
     // vex chords stuff
@@ -73,7 +74,7 @@ angular.module('diatonicator', [])
         };
     });
 
-    diatonicator._scales = Scale.KNOWN_SCALES.map(function (scaleName) {
+    diatonicator._scales = Modes.map(function (scaleName) {
       return {
         name: scaleName
       };

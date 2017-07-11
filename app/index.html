@@ -16,7 +16,32 @@
             	</div>
             </div>
 
-            <!-- <div class="dropdown">
+            
+
+            <div class="row content">
+
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        <div class="scales-wrapper">
+                            <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)">
+                                <span class="text">{{scale.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="main-content results-wrapper">
+                            <div class="col-md-2 chord" ng-repeat="chord in diatonicator.results">
+                                <span>{{chord.interval}} : </span><span>{{chord.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--<div class="dropdown">
 			  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">
@@ -29,22 +54,8 @@
             <h4>Tonic: {{diatonicator._tonic}}</h4>
             <h4>Mode: {{diatonicator._scale}}</h4>
 
-            <div class="row ">
-	            <div class="col-md-12 results-wrapper">
-	                <div class="chord" ng-repeat="chord in diatonicator.results">
-	                    <span>{{chord.interval}} : </span><span>{{chord.name}}</span>
-	                </div>
-	            </div>
-            </div>
 
-            <div class="scales-wrapper">
-                <div ng-repeat="scale in diatonicator._scales">
-                    <span ng-click="diatonicator.handleScaleClick(scale.name)">{{scale.name}}</span>
-                </div>
             </div>
-
-            
-        </div>
 
         <div id="notation"></div>
         </div>
@@ -52,20 +63,42 @@
 </html>
 
 <style>
-    .tonic-wrapper {
-    	cursor: pointer;
-    	padding-top: 15px;
-    	padding-bottom: 15px;
+    .main-content {
+        border-radius: 5px 5px 5px 5px;
+        -moz-border-radius: 5px 5px 5px 5px;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border: 1px solid #787878;
     }
 
-
-
     .results-wrapper {
-    	width: 100%;
+        text-align: center;
+        min-height: 250px;
+    }
+
+    .scale {
+        margin: 15 0 15 0;
+        padding: 15 0 15 0;
+
+        cursor: pointer;
+        text-align: center;
+
+        border-radius: 5px 5px 5px 5px;
+        -moz-border-radius: 5px 5px 5px 5px;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border: 1px solid #787878;
+    }
+
+    .tonic-wrapper {
+    	cursor: pointer;
+
+        
+    	padding-top: 40px;
+    	padding-bottom: 40px;
     }
 
     .chord {
     	display: inline;
-    	width: 100%;
     }
+
+    
 </style>
