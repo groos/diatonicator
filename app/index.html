@@ -31,8 +31,10 @@
 
                     <div class="col-md-10">
                         <div class="main-content results-wrapper">
-                            <div class="col-md-1 chord" ng-repeat="chord in diatonicator.results">
-                                <span>{{chord.interval}} : </span><span>{{chord.name}}</span>
+                            <div class="chord-results">
+                                <div class="col-md-1 chord" ng-repeat="chord in diatonicator.results">
+                                    <span class="interval-label">{{chord.interval}} : </span><span>{{chord.name}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +75,16 @@
     .results-wrapper {
         text-align: center;
         margin-top: 15px;
-        min-height: 250px;
+        min-height: 125px;
+        line-height: 0;
+    }
+
+    .chord-results {
+        position: absolute;
+        width: auto;
+        top: 50%;
+        left: 10%;
+        right: 10%;
     }
 
     .scale {
@@ -95,15 +106,15 @@
     	padding-bottom: 40px;
     }
 
-    .tonic {
-
+    .interval-label {
+        font-weight: bold;
     }
 
     .chord {
     	display: inline;
-        min-width: 120px;
-        margin-right: 10px;
-    }
-
-    
+        font-size: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: auto;
+    }    
 </style>
