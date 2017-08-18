@@ -32,8 +32,8 @@
                     <div class="col-md-10">
                         <div class="main-content results-wrapper">
                             <div class="chord-results">
-                                <div class="col-md-1 chord" ng-repeat="chord in diatonicator.results">
-                                    <span class="interval-label">{{chord.interval}} : </span><span>{{chord.name}}</span>
+                                <div class="col-md-1 chord" ng-click="diatonicator.playChord(chord)" ng-repeat="chord in diatonicator.results">
+                                    <span class="interval-label" >{{chord.interval}} : </span><span>{{chord.name}}</span>
                                 </div>
                             </div>
                         </div>
@@ -116,5 +116,6 @@
         padding-top: 10px;
         padding-bottom: 10px;
         width: auto;
+        cursor: pointer;
     }    
 </style>

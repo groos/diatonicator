@@ -44,6 +44,7 @@
     "lodash": "^4.17.4",
     "pitch-fq": "^1.0.0",
     "scientific-notation": "^1.0.0",
+    "tone": "^0.10.0",
     "vexflow": "^1.2.83",
     "webpack-stream": "^3.2.0"
   }

@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var Tone = require('tone');
 
 angular.module('diatonicator', [])
   .controller('diatonicController', function(){
@@ -17,7 +18,7 @@ angular.module('diatonicator', [])
     
 
     var diatonicator = this;
-    diatonicator._tonic = "C";
+    diatonicator._tonic = "C3";
     diatonicator._scale = "major";
 
     var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
@@ -45,6 +46,13 @@ angular.module('diatonicator', [])
       }
     };
 
+    diatonicator.playChord = function(chord){
+      var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
+      
+      //play a chord
+      polySynth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
+    };
+
     var updateResults = function() {
       diatonicator.handleScaleClick(getActiveScale());
     };
@@ -62,7 +70,7 @@ angular.module('diatonicator', [])
     };
 
     diatonicator.setTonic = function(noteName) {
-      diatonicator._tonic = noteName;
+      diatonicator._tonic = noteName + "3";
       updateResults();
     };
 
