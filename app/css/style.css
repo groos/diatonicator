@@ -1,20 +1,27 @@
-.main-content {
-  border-radius: 5px 5px 5px 5px;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border: 1px solid #787878; }
-  .main-content.results-wrapper {
+.results-wrapper {
+  text-align: center;
+  padding-top: 15px;
+  line-height: 0; }
+  .results-wrapper .chord-results {
     text-align: center;
-    margin-top: 15px;
-    min-height: 125px;
-    line-height: 0; }
-  .main-content .chord-results .chord {
-    display: inline;
-    font-size: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: auto;
-    cursor: pointer; }
+    width: auto; }
+    .results-wrapper .chord-results .interval-label {
+      font-weight: bold; }
+    .results-wrapper .chord-results .chord {
+      display: inline-block;
+      padding-right: 10px; }
+      .results-wrapper .chord-results .chord button {
+        width: 100px;
+        height: 100px;
+        background-color: white;
+        border-color: black; }
+        .results-wrapper .chord-results .chord button .name {
+          display: block;
+          font-weight: bold;
+          padding-top: 5px; }
+        .results-wrapper .chord-results .chord button:hover {
+          background-color: 0875B2;
+          color: white; }
 
 .scales-wrapper .scale {
   margin: 15 0 15 0;
@@ -25,17 +32,21 @@
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border: 1px solid #787878; }
-
-.chord-results {
-  position: absolute;
-  width: auto;
-  top: 50%;
-  left: 10%;
-  right: 10%; }
-  .chord-results .interval-label {
-    font-weight: bold; }
+  .scales-wrapper .scale:hover {
+    background-color: grey;
+    color: white; }
 
 .tonic-wrapper {
-  cursor: pointer;
   padding-top: 40px;
   padding-bottom: 40px; }
+  .tonic-wrapper button {
+    width: 100%;
+    border-color: black;
+    color: black;
+    background-color: white; }
+    .tonic-wrapper button:hover {
+      background-color: grey; }
+
+.staff-wrapper #notation {
+  margin-left: auto;
+  margin-right: auto; }

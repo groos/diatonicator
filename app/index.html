@@ -8,59 +8,66 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="container">
         <div ng-controller="diatonicController as diatonicator">
-            <div class="row">
-	            <div class="col-md-12 tonic-wrapper">
-	            <div class="col-md-1 tonic" ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
-                	<span>{{tonic.name}}</span>
-            	</div>
-            </div>
-
-            
-
-            <div class="row content">
-
-                <div class="col-md-12">
-                    <div class="col-md-2">
-                        <div class="scales-wrapper">
-                            <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)">
-                                <span class="text">{{scale.name}}</span>
-                            </div>
-                        </div> 
-                    </div>
-
-                    <div class="col-md-10">
-                        <div class="main-content results-wrapper">
-                            <div class="chord-results">
-                                <div class="col-md-1 chord" ng-click="diatonicator.playChord(chord)" ng-repeat="chord in diatonicator.results">
-                                    <span class="interval-label" >{{chord.interval}} : </span><span>{{chord.name}}</span>
-                                </div>
-                            </div>
+            <div class="container desktop">
+                <div class="row">
+                    <div class="col-md-12 tonic-wrapper">
+                        <div class="col-md-1 tonic" ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
+                            <button type="button" class="btn btn-primary">{{tonic.name}}</button>
                         </div>
                     </div>
-
                 </div>
 
+                <div class="row content">
+
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <div class="scales-wrapper">
+                                <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)">
+                                    <span class="text">{{scale.name}}</span>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="results-wrapper">
+                                <div class="chord-results">
+                                    <div class="chord" ng-repeat="chord in diatonicator.results">
+                                        <button type="button" class="btn btn-secondary" ng-click="diatonicator.pickChord(chord)">{{chord.interval}}<span class="name">{{chord.name}}</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="staff-wrapper">
+                                    <div id="notation"></div>
+                                </div>
+                        </div>
+
+                    </div>
+
+                    <h4>Tonic: {{diatonicator._tonic}}</h4>
+                    <h4>Mode: {{diatonicator._scale}}</h4>
+                </div>
+
+                
+
+                
             </div>
 
-            <!--<div class="dropdown">
-			  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
-			    <li ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
-			    	<span>{{tonic.name}}</span>
-			    </li>
-			  </ul>
-			</div> -->
 
-            <h4>Tonic: {{diatonicator._tonic}}</h4>
-            <h4>Mode: {{diatonicator._scale}}</h4>
-
-
-            </div>
-
-        <div id="notation"></div>
+            <!-- <div class="container mobile">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Choose Tonic</button>
+                    <div class="dropdown-menu">
+                        <a ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)" href="#">{{tonic.name}}</a>
+                    </div>
+                </div>
+            </div> -->
+            
         </div>
+            
+                
+            
+            
+        
     </body>
 </html>

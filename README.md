@@ -7,7 +7,7 @@ Install dependencies
 npm install
 npm run build
 
-Gulp Task (just one default task for now)
+run gulp
 > gulp 
 
 

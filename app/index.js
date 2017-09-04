@@ -9,12 +9,24 @@ angular.module('diatonicator', [])
     var Scale = require('../lib/scale');
     var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
     var VexChords = require('../lib/vexchords/chord.js');
+    var Vex = require('vexflow');
 
-    // vex chords stuff
-    var notation = $('#notation');
     var Raphael = require('../lib/raphael/raphael.js');
-    //var paper = Raphael(notation, 150, 140);
-    //var chord = new ChordBox(paper, 30, 30);
+
+    ///////////////////////// Vex Staff Notation /////////////////////////
+    var vf = Vex.Flow;
+
+    var div = document.getElementById('notation');
+    var renderer = new vf.Renderer(div, vf.Renderer.Backends.SVG);
+    renderer.resize(500, 500);
+
+    var context = renderer.getContext();
+
+    var stave = new vf.Stave(10, 40, 400);
+    stave.addClef('treble');
+    stave.setContext(context).draw();
+
+    // https://github.com/0xfe/vexflow/wiki/The-VexFlow-Tutorial
     
 
     var diatonicator = this;
@@ -46,12 +58,73 @@ angular.module('diatonicator', [])
       }
     };
 
-    diatonicator.playChord = function(chord){
+    diatonicator.pickChord = function(chord){
+      playChord(chord);
+      updateStaff(chord);
+    };
+
+    var playChord = function(chord){
       var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
       
       //play a chord
       polySynth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
     };
+
+    var updateStaff = function(chord){
+      var state = resetStaff();
+
+      notes = [];
+      var key = getKey(chord.toString());
+      
+
+      chord.simple().map(function(note){
+        var accidental = getAccidental(note);
+
+        if (accidental){
+          notes.push(new vf.StaveNote({clef: 'treble', keys: [note + '/4'], duration : 'q'}).addAccidental(0, new vf.Accidental(accidental)));
+        } else {
+          notes.push(new vf.StaveNote({clef: 'treble', keys: [note + '/4'], duration : 'q'}));
+        }
+        
+      }.bind(this));
+
+      vf.Formatter.FormatAndDraw(state.context, state.stave, notes);
+    };
+
+    var getKey = function(root) {
+      if (root && root.length){
+        return root[0].toUpperCase();
+      }
+    };
+
+    var getAccidental = function(root){
+      if (root && root.length > 1){
+        if (root.indexOf('#')){
+          return '#';
+        }
+
+        if (root.subString(1).indexOf('b')){
+          return 'b';
+        }
+      }
+    };
+
+    var resetStaff = function() {
+      $('#notation svg').remove();
+      var renderer = new vf.Renderer(div, vf.Renderer.Backends.SVG);
+      renderer.resize(500, 500);
+  
+      var context = renderer.getContext();
+  
+      var stave = new vf.Stave(10, 40, 400);
+      stave.addClef('treble');
+      stave.setContext(context).draw();
+
+      return {
+        context: context,
+        stave: stave
+      }
+    }
 
     var updateResults = function() {
       diatonicator.handleScaleClick(getActiveScale());
@@ -70,8 +143,9 @@ angular.module('diatonicator', [])
     };
 
     diatonicator.setTonic = function(noteName) {
+      resetStaff();
       diatonicator._tonic = noteName + "3";
-      updateResults();
+      updateResults(); 
     };
 
     diatonicator._tonics = chromatic.scale.map(function (interval, index) {
@@ -87,29 +161,4 @@ angular.module('diatonicator', [])
         name: scaleName
       };
     });
-
-
-
-
-
-
-        ///////////////////////// Vex Staff Notation /////////////////////////
-    var Vex = require('vexflow');
-
-    var vf = new Vex.Flow.Factory({
-      renderer: {selector: 'notation', width: 500, heith: 200}
-    });
-
-    var score = vf.EasyScore();
-    var system = vf.System();
-
-    system.addStave({
-      voices: [
-        score.voice(score.notes('C#5/q, B4, A4, G#4', {stem: 'up'})),
-        score.voice(score.notes('C#4/h, C#4', {stem: 'down'}))
-      ]
-    }).addClef('treble').addTimeSignature('4/4');
-
-    //vf.draw();
-    ///////////////////////// Vex Staff Notation /////////////////////////
   });

@@ -1,24 +1,39 @@
-.main-content {
-    border-radius: 5px 5px 5px 5px;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border: 1px solid #787878;
+$breakpoint-mobile: 468px;
 
-    &.results-wrapper {
-        text-align: center;
-        margin-top: 15px;
-        min-height: 125px;
-        line-height: 0;
-    }
+.results-wrapper {
+    text-align: center;
+    padding-top: 15px;
+    line-height: 0;
 
     .chord-results {
+        text-align: center;
+        width: auto;
+    
+        .interval-label {
+            font-weight: bold;
+        }
+    
         .chord {
-            display: inline;
-            font-size: 20px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            width: auto;
-            cursor: pointer;
+            display: inline-block;
+            padding-right: 10px;
+    
+            button {
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-color: black;
+
+                .name {
+                    display: block;
+                    font-weight: bold;
+                    padding-top: 5px;
+                }
+
+                &:hover {
+                    background-color: 0875B2;
+                    color: white;
+                }
+            }
         }
     }
 }
@@ -35,23 +50,45 @@
         -moz-border-radius: 5px 5px 5px 5px;
         -webkit-border-radius: 5px 5px 5px 5px;
         border: 1px solid #787878;
-    }
-}
 
-.chord-results {
-    position: absolute;
-    width: auto;
-    top: 50%;
-    left: 10%;
-    right: 10%;
-
-    .interval-label {
-        font-weight: bold;
+        &:hover {
+            background-color: grey;
+            color: white;
+        }
     }
 }
 
 .tonic-wrapper {
-    cursor: pointer;
     padding-top: 40px;
     padding-bottom: 40px;
+
+    button {
+        width: 100%;
+        border-color: black;
+        color: black;
+        background-color: white;
+
+        &:hover {
+            background-color: grey;
+        }
+    }
+}
+
+.staff-wrapper {
+    #notation {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.container.mobile {
+    @media (max-height: $breakpoint-mobile) {
+        //display: none;
+    }
+}
+
+.container.desktop {
+    @media (min-height: $breakpoint-mobile){
+        //display: none;
+    }
 }
