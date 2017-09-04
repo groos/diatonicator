@@ -5,6 +5,7 @@
         <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
         <script src="../dist/bundle.js"></script>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="container">
@@ -26,7 +27,7 @@
                             <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)">
                                 <span class="text">{{scale.name}}</span>
                             </div>
-                        </div>
+                        </div> 
                     </div>
 
                     <div class="col-md-10">
@@ -63,59 +64,3 @@
         </div>
     </body>
 </html>
-
-<style>
-    .main-content {
-        border-radius: 5px 5px 5px 5px;
-        -moz-border-radius: 5px 5px 5px 5px;
-        -webkit-border-radius: 5px 5px 5px 5px;
-        border: 1px solid #787878;
-    }
-
-    .results-wrapper {
-        text-align: center;
-        margin-top: 15px;
-        min-height: 125px;
-        line-height: 0;
-    }
-
-    .chord-results {
-        position: absolute;
-        width: auto;
-        top: 50%;
-        left: 10%;
-        right: 10%;
-    }
-
-    .scale {
-        margin: 15 0 15 0;
-        padding: 15 0 15 0;
-
-        cursor: pointer;
-        text-align: center;
-
-        border-radius: 5px 5px 5px 5px;
-        -moz-border-radius: 5px 5px 5px 5px;
-        -webkit-border-radius: 5px 5px 5px 5px;
-        border: 1px solid #787878;
-    }
-
-    .tonic-wrapper {
-    	cursor: pointer;
-    	padding-top: 40px;
-    	padding-bottom: 40px;
-    }
-
-    .interval-label {
-        font-weight: bold;
-    }
-
-    .chord {
-    	display: inline;
-        font-size: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        width: auto;
-        cursor: pointer;
-    }    
-</style>
