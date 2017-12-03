@@ -76,6 +76,17 @@
 	    
 
 	    var diatonicator = this;
+
+	    diatonicator.description = "Diatonicator is a music theory practice tool that helps you learn and practice diatonic modes in any key. It began as a proof of concept, and continues to be a work in progress. Some day I will refactor the code :)";
+	    diatonicator.links = {
+	      twitter: { text: 'Twitter', link: 'https://twitter.com/ntgroos'},
+	      teoria: { text: 'Teoria.js', link: 'https://github.com/saebekassebil/teoria'},
+	      tone: { text: 'Tone.js', link: 'https://tonejs.github.io/'}
+	    }
+
+	    diatonicator.keywords = "music, theory, guitar, piano, modes, ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, jazz, improvisation, scale, scales, tonic, diatonic, practice, key, diatonicator";
+	    diatonicator.disclaimer = "Diatonicator is not approved for commercial use."
+
 	    diatonicator._tonic = "C3";
 	    diatonicator._scale = "major";
 

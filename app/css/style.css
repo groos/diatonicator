@@ -50,3 +50,37 @@
 .staff-wrapper #notation {
   margin-left: auto;
   margin-right: auto; }
+
+.footer {
+  padding-top: 20px;
+  text-align: center; }
+  .footer .description {
+    font-style: italic; }
+
+@media (max-width: 468px) {
+  .container.desktop {
+    display: none !important; } }
+
+.container.desktop .state {
+  padding-top: 20px; }
+
+@media (min-width: 468px) {
+  .container.mobile {
+    display: none !important; } }
+
+.container.mobile .row {
+  text-align: center;
+  padding-top: 15px; }
+
+.container.mobile .dropdown-wrapper {
+  display: inline-block; }
+
+.container.mobile .dropdown-menu a {
+  text-align: center;
+  font-weight: bold;
+  height: 30px;
+  display: block; }
+
+.container.mobile .state {
+  padding-top: 40px;
+  text-align: center; }

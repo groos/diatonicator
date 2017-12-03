@@ -1,6 +1,3 @@
-//var jQuery = require('jquery');
-//require('bootstrap');
-
 var path = require('path');
 
 module.exports = {
