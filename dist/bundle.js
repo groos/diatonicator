@@ -1,82 +1,43 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
+
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
+
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
+/******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/ 		}
+
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-/******/
+
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+
 /******/ 		// Flag the module as loaded
-<<<<<<< HEAD
-/******/ 		module.l = true;
-/******/
-=======
 /******/ 		module.loaded = true;
 
->>>>>>> refs/remotes/origin/diatonicator-app-play
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
+
+
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-/******/
+
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-<<<<<<< HEAD
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-=======
 
->>>>>>> refs/remotes/origin/diatonicator-app-play
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-/******/
+
 /******/ 	// Load entry module and return exports
-<<<<<<< HEAD
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
-=======
 /******/ 	return __webpack_require__(0);
->>>>>>> refs/remotes/origin/diatonicator-app-play
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -263,54 +224,6 @@
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-
-var teoria = __webpack_require__(8)
-
-function Diatonic(root, scale){
-	this.root = teoria.note(root);
-	this.scale = this.root.scale(scale);
-};
-
-Diatonic.prototype = {
-	chordAt: function(index){
-		return this.diatonicChord(this.scale, index - 1);
-	},
-	diatonicChord: function (scale, rootIndex){
-		//debugger;
-		var majorThird = this.majorOrPerfectInterval(scale, rootIndex, 'third');
-		var perfectFifth = this.majorOrPerfectInterval(scale, rootIndex, 'fifth');
-		var majorSeventh = this.majorOrPerfectInterval(scale, rootIndex, 'seventh');
-		
-		if (majorThird && majorSeventh && perfectFifth){
-			// M7
-			return scale.notes()[rootIndex].chord('M7'); // something like this
-		} else if (!majorThird && !majorSeventh && perfectFifth) {
-			// m7
-			return scale.notes()[rootIndex].chord('m7');
-		} else if (majorThird && !majorSeventh && perfectFifth) {
-			// 7
-			return scale.notes()[rootIndex].chord('7');
-		} else if (!majorThird && !majorSeventh && !perfectFifth){
-			return scale.notes()[rootIndex].chord('m7b5');
-		}
-	},
-	getIntervalNotes: function (scale, rootIndex, interval){
-		//debugger;
-
-		switch (interval){
-			case 'third':
-				interval = 2;
-				break;
-			case 'fifth':
-				interval = 4;
-				break;
-			case 'seventh':
-				interval = 6;
-				break;
-			default:
-				return "invalid interval name: use 'third', 'fifth', or 'seventh'"
-=======
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	 * jQuery JavaScript Library v3.2.1
 	 * https://jquery.com/
@@ -347,7 +260,6 @@ Diatonic.prototype = {
 				};
 		} else {
 			factory( global );
->>>>>>> refs/remotes/origin/diatonicator-app-play
 		}
 
 	// Pass this if window is not defined yet
@@ -361,145 +273,13 @@ Diatonic.prototype = {
 
 	var arr = [];
 
-<<<<<<< HEAD
-var knowledge = __webpack_require__(0);
-var Interval = __webpack_require__(5);
-
-var scales = {
-  aeolian: ['P1', 'M2', 'm3', 'P4', 'P5', 'm6', 'm7'],
-  blues: ['P1', 'm3', 'P4', 'd5', 'P5', 'm7'],
-  chromatic: ['P1', 'm2', 'M2', 'm3', 'M3', 'P4',
-    'A4', 'P5', 'm6', 'M6', 'm7', 'M7'],
-  dorian: ['P1', 'M2', 'm3', 'P4', 'P5', 'M6', 'm7'],
-  doubleharmonic: ['P1', 'm2', 'M3', 'P4', 'P5', 'm6', 'M7'],
-  harmonicminor: ['P1', 'M2', 'm3', 'P4', 'P5', 'm6', 'M7'],
-  ionian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'M7'],
-  locrian: ['P1', 'm2', 'm3', 'P4', 'd5', 'm6', 'm7'],
-  lydian: ['P1', 'M2', 'M3', 'A4', 'P5', 'M6', 'M7'],
-  majorpentatonic: ['P1', 'M2', 'M3', 'P5', 'M6'],
-  melodicminor: ['P1', 'M2', 'm3', 'P4', 'P5', 'M6', 'M7'],
-  minorpentatonic: ['P1', 'm3', 'P4', 'P5', 'm7'],
-  mixolydian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'm7'],
-  phrygian: ['P1', 'm2', 'm3', 'P4', 'P5', 'm6', 'm7'],
-  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6']
-};
-
-// synonyms
-scales.harmonicchromatic = scales.chromatic;
-scales.minor = scales.aeolian;
-scales.major = scales.ionian;
-scales.flamenco = scales.doubleharmonic;
-
-function Scale(tonic, scale) {
-  if (!(this instanceof Scale)) return new Scale(tonic, scale);
-  var scaleName, i;
-  if (!('coord' in tonic)) {
-    throw new Error('Invalid Tonic');
-  }
-
-  if (typeof scale === 'string') {
-    scaleName = scale;
-    scale = scales[scale];
-    if (!scale)
-      throw new Error('Invalid Scale');
-  } else {
-    for (i in scales) {
-      if (scales.hasOwnProperty(i)) {
-        if (scales[i].toString() === scale.toString()) {
-          scaleName = i;
-          break;
-        }
-      }
-    }
-  }
-
-  this.name = scaleName;
-  this.tonic = tonic;
-  this.scale = scale;
-}
-
-Scale.prototype = {
-  notes: function() {
-    var notes = [];
-
-    for (var i = 0, length = this.scale.length; i < length; i++) {
-      notes.push(this.tonic.interval(this.scale[i]));
-    }
-
-    return notes;
-  },
-
-  simple: function() {
-    return this.notes().map(function(n) { return n.toString(true); });
-  },
-
-  type: function() {
-    var length = this.scale.length - 2;
-    if (length < 8) {
-      return ['di', 'tri', 'tetra', 'penta', 'hexa', 'hepta', 'octa'][length] +
-        'tonic';
-    }
-  },
-
-  get: function(i) {
-    var isStepStr = typeof i === 'string' && i in knowledge.stepNumber;
-    i = isStepStr ? knowledge.stepNumber[i] : i;
-
-    return this.tonic.interval(this.scale[i - 1]);
-  },
-
-  solfege: function(index, showOctaves) {
-    if (index)
-      return this.get(index).solfege(this, showOctaves);
-
-    return this.notes().map(function(n) {
-      return n.solfege(this, showOctaves);
-    });
-  },
-
-  interval: function(interval) {
-    interval = (typeof interval === 'string') ?
-      Interval.toCoord(interval) : interval;
-    return new Scale(this.tonic.interval(interval), this.scale);
-  },
-
-  transpose: function(interval) {
-    var scale = this.interval(interval);
-    this.scale = scale.scale;
-    this.tonic = scale.tonic;
-
-    return this;
-  }
-};
-Scale.KNOWN_SCALES = Object.keys(scales);
-
-module.exports = Scale;
-=======
 	var document = window.document;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	var getProto = Object.getPrototypeOf;
 
 	var slice = arr.slice;
 
-<<<<<<< HEAD
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.2.1
- * https://jquery.com/
- *
- * Includes Sizzle.js
- * https://sizzlejs.com/
- *
- * Copyright JS Foundation and other contributors
- * Released under the MIT license
- * https://jquery.org/license
- *
- * Date: 2017-03-20T18:59Z
- */
-( function( global, factory ) {
-=======
 	var concat = arr.concat;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	var push = arr.push;
 
@@ -564,13 +344,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 		constructor: jQuery,
 
-<<<<<<< HEAD
-var
-	version = "3.2.1",
-=======
 		// The default length of a jQuery object is 0
 		length: 0,
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		toArray: function() {
 			return slice.call( this );
@@ -685,15 +460,6 @@ var
 						continue;
 					}
 
-<<<<<<< HEAD
-				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
-					( copyIsArray = Array.isArray( copy ) ) ) ) {
-
-					if ( copyIsArray ) {
-						copyIsArray = false;
-						clone = src && Array.isArray( src ) ? src : [];
-=======
 					// Recurse if we're merging plain objects or arrays
 					if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
 						( copyIsArray = Array.isArray( copy ) ) ) ) {
@@ -701,7 +467,6 @@ var
 						if ( copyIsArray ) {
 							copyIsArray = false;
 							clone = src && Array.isArray( src ) ? src : [];
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 						} else {
 							clone = src && jQuery.isPlainObject( src ) ? src : {};
@@ -734,17 +499,11 @@ var
 			throw new Error( msg );
 		},
 
-<<<<<<< HEAD
-	isWindow: function( obj ) {
-		return obj != null && obj === obj.window;
-	},
-=======
 		noop: function() {},
 
 		isFunction: function( obj ) {
 			return jQuery.type( obj ) === "function";
 		},
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		isWindow: function( obj ) {
 			return obj != null && obj === obj.window;
@@ -813,10 +572,6 @@ var
 			DOMEval( code );
 		},
 
-<<<<<<< HEAD
-	each: function( obj, callback ) {
-		var length, i = 0;
-=======
 		// Convert dashed to camelCase; used by the css and data modules
 		// Support: IE <=9 - 11, Edge 12 - 13
 		// Microsoft forgot to hump their vendor prefix (#9572)
@@ -826,7 +581,6 @@ var
 
 		each: function( obj, callback ) {
 			var length, i = 0;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			if ( isArrayLike( obj ) ) {
 				length = obj.length;
@@ -3309,17 +3063,6 @@ var
 
 	var rneedsContext = jQuery.expr.match.needsContext;
 
-<<<<<<< HEAD
-
-
-function nodeName( elem, name ) {
-
-  return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
-
-};
-var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
-=======
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 
 	function nodeName( elem, name ) {
@@ -3622,72 +3365,6 @@ var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|
 			);
 		},
 
-<<<<<<< HEAD
-	addBack: function( selector ) {
-		return this.add( selector == null ?
-			this.prevObject : this.prevObject.filter( selector )
-		);
-	}
-} );
-
-function sibling( cur, dir ) {
-	while ( ( cur = cur[ dir ] ) && cur.nodeType !== 1 ) {}
-	return cur;
-}
-
-jQuery.each( {
-	parent: function( elem ) {
-		var parent = elem.parentNode;
-		return parent && parent.nodeType !== 11 ? parent : null;
-	},
-	parents: function( elem ) {
-		return dir( elem, "parentNode" );
-	},
-	parentsUntil: function( elem, i, until ) {
-		return dir( elem, "parentNode", until );
-	},
-	next: function( elem ) {
-		return sibling( elem, "nextSibling" );
-	},
-	prev: function( elem ) {
-		return sibling( elem, "previousSibling" );
-	},
-	nextAll: function( elem ) {
-		return dir( elem, "nextSibling" );
-	},
-	prevAll: function( elem ) {
-		return dir( elem, "previousSibling" );
-	},
-	nextUntil: function( elem, i, until ) {
-		return dir( elem, "nextSibling", until );
-	},
-	prevUntil: function( elem, i, until ) {
-		return dir( elem, "previousSibling", until );
-	},
-	siblings: function( elem ) {
-		return siblings( ( elem.parentNode || {} ).firstChild, elem );
-	},
-	children: function( elem ) {
-		return siblings( elem.firstChild );
-	},
-	contents: function( elem ) {
-        if ( nodeName( elem, "iframe" ) ) {
-            return elem.contentDocument;
-        }
-
-        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-        // Treat the template element as a regular one in browsers that
-        // don't support it.
-        if ( nodeName( elem, "template" ) ) {
-            elem = elem.content || elem;
-        }
-
-        return jQuery.merge( [], elem.childNodes );
-	}
-}, function( name, fn ) {
-	jQuery.fn[ name ] = function( until, selector ) {
-		var matched = jQuery.map( this, fn, until );
-=======
 		add: function( selector, context ) {
 			return this.pushStack(
 				jQuery.uniqueSort(
@@ -3695,7 +3372,6 @@ jQuery.each( {
 				)
 			);
 		},
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		addBack: function( selector ) {
 			return this.add( selector == null ?
@@ -3853,13 +3529,8 @@ jQuery.each( {
 			// Fire callbacks
 			fire = function() {
 
-<<<<<<< HEAD
-			// Enforce single-firing
-			locked = locked || options.once;
-=======
 				// Enforce single-firing
 				locked = locked || options.once;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 				// Execute callbacks for all pending executions,
 				// respecting firingIndex overrides and runtime changes
@@ -4033,14 +3704,9 @@ jQuery.each( {
 
 		try {
 
-<<<<<<< HEAD
-function adoptValue( value, resolve, reject, noValue ) {
-	var method;
-=======
 			// Check for promise aspect first to privilege synchronous behavior
 			if ( value && jQuery.isFunction( ( method = value.promise ) ) ) {
 				method.call( value ).done( resolve ).fail( reject );
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			// Other thenables
 			} else if ( value && jQuery.isFunction( ( method = value.then ) ) ) {
@@ -4060,27 +3726,10 @@ function adoptValue( value, resolve, reject, noValue ) {
 		// Deferred#then to conditionally suppress rejection.
 		} catch ( value ) {
 
-<<<<<<< HEAD
-			// Control `resolve` arguments by letting Array#slice cast boolean `noValue` to integer:
-			// * false: [ value ].slice( 0 ) => resolve( value )
-			// * true: [ value ].slice( 1 ) => resolve()
-			resolve.apply( undefined, [ value ].slice( noValue ) );
-		}
-
-	// For Promises/A+, convert exceptions into rejections
-	// Since jQuery.when doesn't unwrap thenables, we can skip the extra checks appearing in
-	// Deferred#then to conditionally suppress rejection.
-	} catch ( value ) {
-
-		// Support: Android 4.0 only
-		// Strict mode functions invoked without .call/.apply get global-object context
-		reject.apply( undefined, [ value ] );
-=======
 			// Support: Android 4.0 only
 			// Strict mode functions invoked without .call/.apply get global-object context
 			reject.apply( undefined, [ value ] );
 		}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 	}
 
 	jQuery.extend( {
@@ -4402,17 +4051,10 @@ function adoptValue( value, resolve, reject, noValue ) {
 					};
 				};
 
-<<<<<<< HEAD
-		// Single- and empty arguments are adopted like Promise.resolve
-		if ( remaining <= 1 ) {
-			adoptValue( singleValue, master.done( updateFunc( i ) ).resolve, master.reject,
-				!remaining );
-=======
 			// Single- and empty arguments are adopted like Promise.resolve
 			if ( remaining <= 1 ) {
 				adoptValue( singleValue, master.done( updateFunc( i ) ).resolve, master.reject,
 					!remaining );
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 				// Use .then() to unwrap secondary thenables (cf. gh-3000)
 				if ( master.state() === "pending" ||
@@ -4484,10 +4126,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 		// the ready event fires. See #6781
 		readyWait: 1,
 
-<<<<<<< HEAD
-	// Handle when the DOM is ready
-	ready: function( wait ) {
-=======
 		// Handle when the DOM is ready
 		ready: function( wait ) {
 
@@ -4495,7 +4133,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 			if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
 				return;
 			}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			// Remember that the DOM is ready
 			jQuery.isReady = true;
@@ -4732,17 +4369,12 @@ function adoptValue( value, resolve, reject, noValue ) {
 				} else {
 					key = jQuery.camelCase( key );
 
-<<<<<<< HEAD
-			// Support array or space separated string of keys
-			if ( Array.isArray( key ) ) {
-=======
 					// If a key with the spaces exists, use it.
 					// Otherwise, create an array by matching non-whitespace
 					key = key in cache ?
 						[ key ] :
 						( key.match( rnothtmlwhite ) || [] );
 				}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 				i = key.length;
 
@@ -4953,14 +4585,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 				type = ( type || "fx" ) + "queue";
 				queue = dataPriv.get( elem, type );
 
-<<<<<<< HEAD
-			// Speed up dequeue by getting out quickly if this is just a lookup
-			if ( data ) {
-				if ( !queue || Array.isArray( data ) ) {
-					queue = dataPriv.access( elem, type, jQuery.makeArray( data ) );
-				} else {
-					queue.push( data );
-=======
 				// Speed up dequeue by getting out quickly if this is just a lookup
 				if ( data ) {
 					if ( !queue || Array.isArray( data ) ) {
@@ -4968,7 +4592,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 					} else {
 						queue.push( data );
 					}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 				}
 				return queue || [];
 			}
@@ -5345,12 +4968,7 @@ function adoptValue( value, resolve, reject, noValue ) {
 			return jQuery.merge( [ context ], ret );
 		}
 
-<<<<<<< HEAD
-	if ( tag === undefined || tag && nodeName( context, tag ) ) {
-		return jQuery.merge( [ context ], ret );
-=======
 		return ret;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 	}
 
 
@@ -5951,24 +5569,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 			},
 			click: {
 
-<<<<<<< HEAD
-			// For checkbox, fire native event so checked state will be right
-			trigger: function() {
-				if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
-					this.click();
-					return false;
-				}
-			},
-
-			// For cross-browser consistency, don't fire native .click() on links
-			_default: function( event ) {
-				return nodeName( event.target, "a" );
-			}
-		},
-
-		beforeunload: {
-			postDispatch: function( event ) {
-=======
 				// For checkbox, fire native event so checked state will be right
 				trigger: function() {
 					if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
@@ -5985,7 +5585,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 
 			beforeunload: {
 				postDispatch: function( event ) {
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 					// Support: Firefox 20+
 					// Firefox doesn't alert if the returnValue field is not set.
@@ -6247,15 +5846,6 @@ function adoptValue( value, resolve, reject, noValue ) {
 
 		/* eslint-enable */
 
-<<<<<<< HEAD
-// Prefer a tbody over its parent table for containing new rows
-function manipulationTarget( elem, content ) {
-	if ( nodeName( elem, "table" ) &&
-		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
-
-		return jQuery( ">tbody", elem )[ 0 ] || elem;
-	}
-=======
 		// Support: IE <=10 - 11, Edge 12 - 13
 		// In IE/Edge using regex groups here causes severe slowdowns.
 		// See https://connect.microsoft.com/IE/feedback/details/1736512/
@@ -6265,7 +5855,6 @@ function manipulationTarget( elem, content ) {
 		rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
 		rscriptTypeMasked = /^true\/(.*)/,
 		rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	// Prefer a tbody over its parent table for containing new rows
 	function manipulationTarget( elem, content ) {
@@ -6769,16 +6358,6 @@ function manipulationTarget( elem, content ) {
 			return;
 		}
 
-<<<<<<< HEAD
-function curCSS( elem, name, computed ) {
-	var width, minWidth, maxWidth, ret,
-
-		// Support: Firefox 51+
-		// Retrieving style before computed somehow
-		// fixes an issue with getting wrong values
-		// on detached elements
-		style = elem.style;
-=======
 		// Support: IE <=9 - 11 only
 		// Style of cloned element affects source element cloned (#8908)
 		div.style.backgroundClip = "content-box";
@@ -6808,19 +6387,10 @@ function curCSS( elem, name, computed ) {
 			}
 		} );
 	} )();
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 
-<<<<<<< HEAD
-	// getPropertyValue is needed for:
-	//   .css('filter') (IE 9 only, #12537)
-	//   .css('--customProperty) (#3144)
-	if ( computed ) {
-		ret = computed.getPropertyValue( name ) || computed[ name ];
-=======
 	function curCSS( elem, name, computed ) {
 		var width, minWidth, maxWidth, ret,
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			// Support: Firefox 51+
 			// Retrieving style before computed somehow
@@ -6891,19 +6461,6 @@ function curCSS( elem, name, computed ) {
 		};
 	}
 
-<<<<<<< HEAD
-	// Swappable if display is none or starts with table
-	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
-	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-	rcustomProp = /^--/,
-	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
-	cssNormalTransform = {
-		letterSpacing: "0",
-		fontWeight: "400"
-	},
-=======
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	var
 
@@ -6929,23 +6486,9 @@ function curCSS( elem, name, computed ) {
 			return name;
 		}
 
-<<<<<<< HEAD
-// Return a property mapped along what jQuery.cssProps suggests or to
-// a vendor prefixed property.
-function finalPropName( name ) {
-	var ret = jQuery.cssProps[ name ];
-	if ( !ret ) {
-		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
-	}
-	return ret;
-}
-
-function setPositiveNumber( elem, value, subtract ) {
-=======
 		// Check for vendor prefixed names
 		var capName = name[ 0 ].toUpperCase() + name.slice( 1 ),
 			i = cssPrefixes.length;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		while ( i-- ) {
 			name = cssPrefixes[ i ] + capName;
@@ -7013,53 +6556,6 @@ function setPositiveNumber( elem, value, subtract ) {
 				// At this point, extra isn't content, so add padding
 				val += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
 
-<<<<<<< HEAD
-	// Start with computed style
-	var valueIsBorderBox,
-		styles = getStyles( elem ),
-		val = curCSS( elem, name, styles ),
-		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
-
-	// Computed unit is not pixels. Stop here and return.
-	if ( rnumnonpx.test( val ) ) {
-		return val;
-	}
-
-	// Check for style in case a browser which returns unreliable values
-	// for getComputedStyle silently falls back to the reliable elem.style
-	valueIsBorderBox = isBorderBox &&
-		( support.boxSizingReliable() || val === elem.style[ name ] );
-
-	// Fall back to offsetWidth/Height when value is "auto"
-	// This happens for inline elements with no explicit setting (gh-3571)
-	if ( val === "auto" ) {
-		val = elem[ "offset" + name[ 0 ].toUpperCase() + name.slice( 1 ) ];
-	}
-
-	// Normalize "", auto, and prepare for extra
-	val = parseFloat( val ) || 0;
-
-	// Use the active box-sizing model to add/subtract irrelevant styles
-	return ( val +
-		augmentWidthOrHeight(
-			elem,
-			name,
-			extra || ( isBorderBox ? "border" : "content" ),
-			valueIsBorderBox,
-			styles
-		)
-	) + "px";
-}
-
-jQuery.extend( {
-
-	// Add in style property hooks for overriding the default
-	// behavior of getting and setting a style property
-	cssHooks: {
-		opacity: {
-			get: function( elem, computed ) {
-				if ( computed ) {
-=======
 				// At this point, extra isn't content nor padding, so add border
 				if ( extra !== "padding" ) {
 					val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
@@ -7108,24 +6604,9 @@ jQuery.extend( {
 			)
 		) + "px";
 	}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	jQuery.extend( {
 
-<<<<<<< HEAD
-		// Make sure that we're working with the right name
-		var ret, type, hooks,
-			origName = jQuery.camelCase( name ),
-			isCustomProp = rcustomProp.test( name ),
-			style = elem.style;
-
-		// Make sure that we're working with the right name. We don't
-		// want to query the value if it is a CSS custom property
-		// since they are user-defined.
-		if ( !isCustomProp ) {
-			name = finalPropName( origName );
-		}
-=======
 		// Add in style property hooks for overriding the default
 		// behavior of getting and setting a style property
 		cssHooks: {
@@ -7140,7 +6621,6 @@ jQuery.extend( {
 				}
 			}
 		},
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		// Don't automatically add "px" to these possibly-unitless properties
 		cssNumber: {
@@ -7256,17 +6736,9 @@ jQuery.extend( {
 			// Try prefixed name followed by the unprefixed name
 			hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
 
-<<<<<<< HEAD
-				if ( isCustomProp ) {
-					style.setProperty( name, value );
-				} else {
-					style[ name ] = value;
-				}
-=======
 			// If a hook was provided get the computed value from there
 			if ( hooks && "get" in hooks ) {
 				val = hooks.get( elem, true, extra );
->>>>>>> refs/remotes/origin/diatonicator-app-play
 			}
 
 			// Otherwise, if a way to get the computed value exists, use that
@@ -7287,28 +6759,12 @@ jQuery.extend( {
 
 			return val;
 		}
-<<<<<<< HEAD
-	},
-
-	css: function( elem, name, extra, styles ) {
-		var val, num, hooks,
-			origName = jQuery.camelCase( name ),
-			isCustomProp = rcustomProp.test( name );
-
-		// Make sure that we're working with the right name. We don't
-		// want to modify the value if it is a CSS custom property
-		// since they are user-defined.
-		if ( !isCustomProp ) {
-			name = finalPropName( origName );
-		}
-=======
 	} );
 
 	jQuery.each( [ "height", "width" ], function( i, name ) {
 		jQuery.cssHooks[ name ] = {
 			get: function( elem, computed, extra ) {
 				if ( computed ) {
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 					// Certain elements can have dimension info if we invisibly show them
 					// but it must have a current display style that would benefit
@@ -7347,22 +6803,10 @@ jQuery.extend( {
 					value = jQuery.css( elem, name );
 				}
 
-<<<<<<< HEAD
-		// Make numeric if forced or a qualifier was provided and val looks numeric
-		if ( extra === "" || extra ) {
-			num = parseFloat( val );
-			return extra === true || isFinite( num ) ? num || 0 : val;
-		}
-
-		return val;
-	}
-} );
-=======
 				return setPositiveNumber( elem, value, subtract );
 			}
 		};
 	} );
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 		function( elem, computed ) {
@@ -7450,11 +6894,6 @@ jQuery.extend( {
 		cur: function() {
 			var hooks = Tween.propHooks[ this.prop ];
 
-<<<<<<< HEAD
-			if ( Array.isArray( name ) ) {
-				styles = getStyles( elem );
-				len = name.length;
-=======
 			return hooks && hooks.get ?
 				hooks.get( this ) :
 				Tween.propHooks._default.get( this );
@@ -7462,7 +6901,6 @@ jQuery.extend( {
 		run: function( percent ) {
 			var eased,
 				hooks = Tween.propHooks[ this.prop ];
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			if ( this.options.duration ) {
 				this.pos = eased = jQuery.easing[ this.easing ](
@@ -7560,22 +6998,6 @@ jQuery.extend( {
 		rfxtypes = /^(?:toggle|show|hide)$/,
 		rrun = /queueHooks$/;
 
-<<<<<<< HEAD
-var
-	fxNow, inProgress,
-	rfxtypes = /^(?:toggle|show|hide)$/,
-	rrun = /queueHooks$/;
-
-function schedule() {
-	if ( inProgress ) {
-		if ( document.hidden === false && window.requestAnimationFrame ) {
-			window.requestAnimationFrame( schedule );
-		} else {
-			window.setTimeout( schedule, jQuery.fx.interval );
-		}
-
-		jQuery.fx.tick();
-=======
 	function schedule() {
 		if ( inProgress ) {
 			if ( document.hidden === false && window.requestAnimationFrame ) {
@@ -7586,7 +7008,6 @@ function schedule() {
 
 			jQuery.fx.tick();
 		}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 	}
 
 	// Animations created synchronously will run synchronously
@@ -7803,25 +7224,6 @@ function schedule() {
 		}
 	}
 
-<<<<<<< HEAD
-function propFilter( props, specialEasing ) {
-	var index, name, easing, value, hooks;
-
-	// camelCase, specialEasing and expand cssHook pass
-	for ( index in props ) {
-		name = jQuery.camelCase( index );
-		easing = specialEasing[ name ];
-		value = props[ index ];
-		if ( Array.isArray( value ) ) {
-			easing = value[ 1 ];
-			value = props[ index ] = value[ 0 ];
-		}
-
-		if ( index !== name ) {
-			props[ name ] = value;
-			delete props[ index ];
-		}
-=======
 	function propFilter( props, specialEasing ) {
 		var index, name, easing, value, hooks;
 
@@ -7834,7 +7236,6 @@ function propFilter( props, specialEasing ) {
 				easing = value[ 1 ];
 				value = props[ index ] = value[ 0 ];
 			}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			if ( index !== name ) {
 				props[ name ] = value;
@@ -7884,39 +7285,6 @@ function propFilter( props, specialEasing ) {
 					index = 0,
 					length = animation.tweens.length;
 
-<<<<<<< HEAD
-			// If there's more to do, yield
-			if ( percent < 1 && length ) {
-				return remaining;
-			}
-
-			// If this was an empty animation, synthesize a final progress notification
-			if ( !length ) {
-				deferred.notifyWith( elem, [ animation, 1, 0 ] );
-			}
-
-			// Resolve the animation and report its conclusion
-			deferred.resolveWith( elem, [ animation ] );
-			return false;
-		},
-		animation = deferred.promise( {
-			elem: elem,
-			props: jQuery.extend( {}, properties ),
-			opts: jQuery.extend( true, {
-				specialEasing: {},
-				easing: jQuery.easing._default
-			}, options ),
-			originalProperties: properties,
-			originalOptions: options,
-			startTime: fxNow || createFxNow(),
-			duration: options.duration,
-			tweens: [],
-			createTween: function( prop, end ) {
-				var tween = jQuery.Tween( elem, animation.opts, prop, end,
-						animation.opts.specialEasing[ prop ] || animation.opts.easing );
-				animation.tweens.push( tween );
-				return tween;
-=======
 				for ( ; index < length; index++ ) {
 					animation.tweens[ index ].run( percent );
 				}
@@ -7936,7 +7304,6 @@ function propFilter( props, specialEasing ) {
 				// Resolve the animation and report its conclusion
 				deferred.resolveWith( elem, [ animation ] );
 				return false;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 			},
 			animation = deferred.promise( {
 				elem: elem,
@@ -8019,49 +7386,7 @@ function propFilter( props, specialEasing ) {
 		return animation;
 	}
 
-<<<<<<< HEAD
-	// Attach callbacks from options
-	animation
-		.progress( animation.opts.progress )
-		.done( animation.opts.done, animation.opts.complete )
-		.fail( animation.opts.fail )
-		.always( animation.opts.always );
-
-	jQuery.fx.timer(
-		jQuery.extend( tick, {
-			elem: elem,
-			anim: animation,
-			queue: animation.opts.queue
-		} )
-	);
-
-	return animation;
-}
-
-jQuery.Animation = jQuery.extend( Animation, {
-
-	tweeners: {
-		"*": [ function( prop, value ) {
-			var tween = this.createTween( prop, value );
-			adjustCSS( tween.elem, prop, rcssNum.exec( value ), tween );
-			return tween;
-		} ]
-	},
-
-	tweener: function( props, callback ) {
-		if ( jQuery.isFunction( props ) ) {
-			callback = props;
-			props = [ "*" ];
-		} else {
-			props = props.match( rnothtmlwhite );
-		}
-
-		var prop,
-			index = 0,
-			length = props.length;
-=======
 	jQuery.Animation = jQuery.extend( Animation, {
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		tweeners: {
 			"*": [ function( prop, value ) {
@@ -8083,18 +7408,12 @@ jQuery.Animation = jQuery.extend( Animation, {
 				index = 0,
 				length = props.length;
 
-<<<<<<< HEAD
-	// Go to the end state if fx are off
-	if ( jQuery.fx.off ) {
-		opt.duration = 0;
-=======
 			for ( ; index < length; index++ ) {
 				prop = props[ index ];
 				Animation.tweeners[ prop ] = Animation.tweeners[ prop ] || [];
 				Animation.tweeners[ prop ].unshift( callback );
 			}
 		},
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		prefilters: [ defaultPrefilter ],
 
@@ -8303,39 +7622,11 @@ jQuery.Animation = jQuery.extend( Animation, {
 			i = 0,
 			timers = jQuery.timers;
 
-<<<<<<< HEAD
-		// Run the timer and safely remove it when done (allowing for external removal)
-		if ( !timer() && timers[ i ] === timer ) {
-			timers.splice( i--, 1 );
-		}
-	}
-=======
 		fxNow = jQuery.now();
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 		for ( ; i < timers.length; i++ ) {
 			timer = timers[ i ];
 
-<<<<<<< HEAD
-jQuery.fx.timer = function( timer ) {
-	jQuery.timers.push( timer );
-	jQuery.fx.start();
-};
-
-jQuery.fx.interval = 13;
-jQuery.fx.start = function() {
-	if ( inProgress ) {
-		return;
-	}
-
-	inProgress = true;
-	schedule();
-};
-
-jQuery.fx.stop = function() {
-	inProgress = null;
-};
-=======
 			// Run the timer and safely remove it when done (allowing for external removal)
 			if ( !timer() && timers[ i ] === timer ) {
 				timers.splice( i--, 1 );
@@ -8352,7 +7643,6 @@ jQuery.fx.stop = function() {
 		jQuery.timers.push( timer );
 		jQuery.fx.start();
 	};
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	jQuery.fx.interval = 13;
 	jQuery.fx.start = function() {
@@ -8472,17 +7762,6 @@ jQuery.fx.stop = function() {
 				return ret;
 			}
 
-<<<<<<< HEAD
-	attrHooks: {
-		type: {
-			set: function( elem, value ) {
-				if ( !support.radioValue && value === "radio" &&
-					nodeName( elem, "input" ) ) {
-					var val = elem.value;
-					elem.setAttribute( "type", value );
-					if ( val ) {
-						elem.value = val;
-=======
 			ret = jQuery.find.attr( elem, name );
 
 			// Non-existent attributes return null, we normalize to undefined
@@ -8500,7 +7779,6 @@ jQuery.fx.stop = function() {
 							elem.value = val;
 						}
 						return value;
->>>>>>> refs/remotes/origin/diatonicator-app-play
 					}
 				}
 			}
@@ -8925,19 +8203,11 @@ jQuery.fx.stop = function() {
 				} else if ( typeof val === "number" ) {
 					val += "";
 
-<<<<<<< HEAD
-			} else if ( Array.isArray( val ) ) {
-				val = jQuery.map( val, function( value ) {
-					return value == null ? "" : value + "";
-				} );
-			}
-=======
 				} else if ( Array.isArray( val ) ) {
 					val = jQuery.map( val, function( value ) {
 						return value == null ? "" : value + "";
 					} );
 				}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 				hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
 
@@ -8994,15 +8264,8 @@ jQuery.fx.stop = function() {
 								( !option.parentNode.disabled ||
 									!nodeName( option.parentNode, "optgroup" ) ) ) {
 
-<<<<<<< HEAD
-							// Don't return options that are disabled or in a disabled optgroup
-							!option.disabled &&
-							( !option.parentNode.disabled ||
-								!nodeName( option.parentNode, "optgroup" ) ) ) {
-=======
 							// Get the specific value for the option
 							value = jQuery( option ).val();
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 							// We don't need an array for one selects
 							if ( one ) {
@@ -9047,14 +8310,6 @@ jQuery.fx.stop = function() {
 		}
 	} );
 
-<<<<<<< HEAD
-// Radios and checkboxes getter/setter
-jQuery.each( [ "radio", "checkbox" ], function() {
-	jQuery.valHooks[ this ] = {
-		set: function( elem, value ) {
-			if ( Array.isArray( value ) ) {
-				return ( elem.checked = jQuery.inArray( jQuery( elem ).val(), value ) > -1 );
-=======
 	// Radios and checkboxes getter/setter
 	jQuery.each( [ "radio", "checkbox" ], function() {
 		jQuery.valHooks[ this ] = {
@@ -9062,7 +8317,6 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 				if ( Array.isArray( value ) ) {
 					return ( elem.checked = jQuery.inArray( jQuery( elem ).val(), value ) > -1 );
 				}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 			}
 		};
 		if ( !support.checkOn ) {
@@ -9355,11 +8609,7 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 	function buildParams( prefix, obj, traditional, add ) {
 		var name;
 
-<<<<<<< HEAD
-	if ( Array.isArray( obj ) ) {
-=======
 		if ( Array.isArray( obj ) ) {
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			// Serialize array item.
 			jQuery.each( obj, function( i, v ) {
@@ -9394,17 +8644,12 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 		}
 	}
 
-<<<<<<< HEAD
-	// If an array was passed in, assume that it is an array of form elements.
-	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
-=======
 	// Serialize an array of form elements or a set of
 	// key/values into a query string
 	jQuery.param = function( a, traditional ) {
 		var prefix,
 			s = [],
 			add = function( key, valueOrFunction ) {
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 				// If value is a function, invoke it and use its return value
 				var value = jQuery.isFunction( valueOrFunction ) ?
@@ -9423,19 +8668,12 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 				add( this.name, this.value );
 			} );
 
-<<<<<<< HEAD
-			if ( Array.isArray( val ) ) {
-				return jQuery.map( val, function( val ) {
-					return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
-				} );
-=======
 		} else {
 
 			// If traditional, encode the "old" way (the way 1.3.2 or older
 			// did it), otherwise encode params recursively.
 			for ( prefix in a ) {
 				buildParams( prefix, a[ prefix ], traditional, add );
->>>>>>> refs/remotes/origin/diatonicator-app-play
 			}
 		}
 
@@ -10893,14 +10131,6 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 
 
 
-<<<<<<< HEAD
-jQuery.offset = {
-	setOffset: function( elem, options, i ) {
-		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
-			position = jQuery.css( elem, "position" ),
-			curElem = jQuery( elem ),
-			props = {};
-=======
 
 	jQuery.offset = {
 		setOffset: function( elem, options, i ) {
@@ -10908,7 +10138,6 @@ jQuery.offset = {
 				position = jQuery.css( elem, "position" ),
 				curElem = jQuery( elem ),
 				props = {};
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			// Set position first, in-case top/left are set even on static elem
 			if ( position === "static" ) {
@@ -10967,27 +10196,13 @@ jQuery.offset = {
 					} );
 			}
 
-<<<<<<< HEAD
-		var doc, docElem, rect, win,
-			elem = this[ 0 ];
-=======
 			var doc, docElem, rect, win,
 				elem = this[ 0 ];
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			if ( !elem ) {
 				return;
 			}
 
-<<<<<<< HEAD
-		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
-		// Support: IE <=11 only
-		// Running getBoundingClientRect on a
-		// disconnected node in IE throws an error
-		if ( !elem.getClientRects().length ) {
-			return { top: 0, left: 0 };
-		}
-=======
 			// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
 			// Support: IE <=11 only
 			// Running getBoundingClientRect on a
@@ -10995,21 +10210,9 @@ jQuery.offset = {
 			if ( !elem.getClientRects().length ) {
 				return { top: 0, left: 0 };
 			}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			rect = elem.getBoundingClientRect();
 
-<<<<<<< HEAD
-		doc = elem.ownerDocument;
-		docElem = doc.documentElement;
-		win = doc.defaultView;
-
-		return {
-			top: rect.top + win.pageYOffset - docElem.clientTop,
-			left: rect.left + win.pageXOffset - docElem.clientLeft
-		};
-	},
-=======
 			doc = elem.ownerDocument;
 			docElem = doc.documentElement;
 			win = doc.defaultView;
@@ -11024,7 +10227,6 @@ jQuery.offset = {
 			if ( !this[ 0 ] ) {
 				return;
 			}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 			var offsetParent, offset,
 				elem = this[ 0 ],
@@ -11048,18 +10250,11 @@ jQuery.offset = {
 					parentOffset = offsetParent.offset();
 				}
 
-<<<<<<< HEAD
-			// Get correct offsets
-			offset = this.offset();
-			if ( !nodeName( offsetParent[ 0 ], "html" ) ) {
-				parentOffset = offsetParent.offset();
-=======
 				// Add offsetParent borders
 				parentOffset = {
 					top: parentOffset.top + jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
 					left: parentOffset.left + jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )
 				};
->>>>>>> refs/remotes/origin/diatonicator-app-play
 			}
 
 			// Subtract parent offsets and element margins
@@ -11099,18 +10294,6 @@ jQuery.offset = {
 		jQuery.fn[ method ] = function( val ) {
 			return access( this, function( elem, method, val ) {
 
-<<<<<<< HEAD
-	jQuery.fn[ method ] = function( val ) {
-		return access( this, function( elem, method, val ) {
-
-			// Coalesce documents and windows
-			var win;
-			if ( jQuery.isWindow( elem ) ) {
-				win = elem;
-			} else if ( elem.nodeType === 9 ) {
-				win = elem.defaultView;
-			}
-=======
 				// Coalesce documents and windows
 				var win;
 				if ( jQuery.isWindow( elem ) ) {
@@ -11118,7 +10301,6 @@ jQuery.offset = {
 				} else if ( elem.nodeType === 9 ) {
 					win = elem.defaultView;
 				}
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 				if ( val === undefined ) {
 					return win ? win[ prop ] : elem[ method ];
@@ -11260,19 +10442,6 @@ jQuery.offset = {
 		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	}
 
-<<<<<<< HEAD
-jQuery.holdReady = function( hold ) {
-	if ( hold ) {
-		jQuery.readyWait++;
-	} else {
-		jQuery.ready( true );
-	}
-};
-jQuery.isArray = Array.isArray;
-jQuery.parseJSON = JSON.parse;
-jQuery.nodeName = nodeName;
-=======
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 
 
@@ -33827,10 +32996,6 @@ jQuery.nodeName = nodeName;
 
 	  interval: intervalConstructor,
 
-<<<<<<< HEAD
-return jQuery;
-} );
-=======
 	  scale: scaleConstructor,
 
 	  Note: Note,
@@ -33838,7 +33003,6 @@ return jQuery;
 	  Scale: Scale,
 	  Interval: Interval
 	};
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 
 	require('./lib/sugar')(teoria);
@@ -33887,236 +33051,6 @@ return jQuery;
 	  }
 	}
 
-<<<<<<< HEAD
-var $ = __webpack_require__(3);
-var _diatonicator = __webpack_require__(1);
-var _scales = __webpack_require__(2);
-var scales = _scales.KNOWN_SCALES;
-var $wrapper = $('.wrapper');
-var $results = $('.results-wrapper');
-
-function component () {
-  var element = document.createElement('div');
-
-  var diatonicator = new _diatonicator('a4', 'mixolydian');
-
-  for (i = 1; i < 8; i++){
-    console.log(diatonicator.chordAt(i));
-  }
-
-  return element
-}
-
-var buildScalesPicker = function(){
-  var dropdownWrapper = $('<div />', {'class' : 'scales-picker-wrapper', 'css' : {'width' : '200px', 'border-style' : 'solid'}})
-
-  scales.forEach(function(name){
-
-    // create a list item for the picker
-    var scaleItem = $('<div />', {'data-scale' : name, 'class' : 'scale-item', 'css' : {'border-style' : 'solid'}});
-    scaleItem.html(name);
-
-    scaleItem.click(handleScaleClick.bind(this));
-    
-    scaleItem.appendTo(dropdownWrapper);
-  }, this);
-
-  dropdownWrapper.appendTo($wrapper);
-};
-
-var handleScaleClick = function(e){
-  var diatonic = new _diatonicator('a4', $(e.target).data('scale'));
-
-  if (diatonic){
-    for (i = 1; i < 8; i++){
-
-      var chord = $('<div />');
-      chord.html('<div>Interval: ' + i + ' | ' + diatonic.chordAt(i).name + '</div>');
-      chord.appendTo($results);
-    }
-  }
-};
-
-//document.body.appendChild(component());
-
-buildScalesPicker();
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var knowledge = __webpack_require__(0);
-var vector = __webpack_require__(6);
-var toCoord = __webpack_require__(7);
-
-function Interval(coord) {
-  if (!(this instanceof Interval)) return new Interval(coord);
-  this.coord = coord;
-}
-
-Interval.prototype = {
-  name: function() {
-    return knowledge.intervalsIndex[this.number() - 1];
-  },
-
-  semitones: function() {
-    return vector.sum(vector.mul(this.coord, [12, 7]));
-  },
-
-  number: function() {
-    return Math.abs(this.value());
-  },
-
-  value: function() {
-    var toMultiply = Math.floor((this.coord[1] - 2) / 7) + 1;
-    var product = vector.mul(knowledge.sharp, toMultiply);
-    var without = vector.sub(this.coord, product);
-    var i = knowledge.intervalFromFifth[without[1] + 5];
-    var diff = without[0] - knowledge.intervals[i][0];
-    var val = knowledge.stepNumber[i] + diff * 7;
-
-    return (val > 0) ? val : val - 2;
-  },
-
-  type: function() {
-    return knowledge.intervals[this.base()][0] <= 1 ? 'perfect' : 'minor';
-  },
-
-  base: function() {
-    var product = vector.mul(knowledge.sharp, this.qualityValue());
-    var fifth = vector.sub(this.coord, product)[1];
-    fifth = this.value() > 0 ? fifth + 5 : -(fifth - 5) % 7;
-    fifth = fifth < 0 ? knowledge.intervalFromFifth.length + fifth : fifth;
-
-    var name = knowledge.intervalFromFifth[fifth];
-    if (name === 'unison' && this.number() >= 8)
-      name = 'octave';
-
-    return name;
-  },
-
-  direction: function(dir) {
-    if (dir) {
-      var is = this.value() >= 1 ? 'up' : 'down';
-      if (is !== dir)
-        this.coord = vector.mul(this.coord, -1);
-
-      return this;
-    }
-    else
-      return this.value() >= 1 ? 'up' : 'down';
-  },
-
-  simple: function(ignore) {
-    // Get the (upwards) base interval (with quality)
-    var simple = knowledge.intervals[this.base()];
-    var toAdd = vector.mul(knowledge.sharp, this.qualityValue());
-    simple = vector.add(simple, toAdd);
-
-    // Turn it around if necessary
-    if (!ignore)
-      simple = this.direction() === 'down' ? vector.mul(simple, -1) : simple;
-
-    return new Interval(simple);
-  },
-
-  isCompound: function() {
-    return this.number() > 8;
-  },
-
-  octaves: function() {
-    var toSubtract, without, octaves;
-
-    if (this.direction() === 'up') {
-      toSubtract = vector.mul(knowledge.sharp, this.qualityValue());
-      without = vector.sub(this.coord, toSubtract);
-      octaves = without[0] - knowledge.intervals[this.base()][0];
-    } else {
-      toSubtract = vector.mul(knowledge.sharp, -this.qualityValue());
-      without = vector.sub(this.coord, toSubtract);
-      octaves = -(without[0] + knowledge.intervals[this.base()][0]);
-    }
-
-    return octaves;
-  },
-
-  invert: function() {
-    var i = this.base();
-    var qual = this.qualityValue();
-    var acc = this.type() === 'minor' ? -(qual - 1) : -qual;
-    var idx = 9 - knowledge.stepNumber[i] - 1;
-    var coord = knowledge.intervals[knowledge.intervalsIndex[idx]];
-    coord = vector.add(coord, vector.mul(knowledge.sharp, acc));
-
-    return new Interval(coord);
-  },
-
-  quality: function(lng) {
-    var quality = knowledge.alterations[this.type()][this.qualityValue() + 2];
-
-    return lng ? knowledge.qualityLong[quality] : quality;
-  },
-
-  qualityValue: function() {
-    if (this.direction() === 'down')
-      return Math.floor((-this.coord[1] - 2) / 7) + 1;
-    else
-      return Math.floor((this.coord[1] - 2) / 7) + 1;
-  },
-
-  equal: function(interval) {
-      return this.coord[0] === interval.coord[0] &&
-          this.coord[1] === interval.coord[1];
-  },
-
-  greater: function(interval) {
-    var semi = this.semitones();
-    var isemi = interval.semitones();
-
-    // If equal in absolute size, measure which interval is bigger
-    // For example P4 is bigger than A3
-    return (semi === isemi) ?
-      (this.number() > interval.number()) : (semi > isemi);
-  },
-
-  smaller: function(interval) {
-    return !this.equal(interval) && !this.greater(interval);
-  },
-
-  add: function(interval) {
-    return new Interval(vector.add(this.coord, interval.coord));
-  },
-
-  toString: function(ignore) {
-    // If given true, return the positive value
-    var number = ignore ? this.number() : this.value();
-
-    return this.quality() + number;
-  }
-};
-
-Interval.toCoord = function(simple) {
-  var coord = toCoord(simple);
-  if (!coord)
-    throw new Error('Invalid simple format interval');
-
-  return new Interval(coord);
-};
-
-Interval.from = function(from, to) {
-  return from.interval(to);
-};
-
-Interval.between = function(from, to) {
-  return new Interval(vector.sub(to.coord, from.coord));
-};
-
-Interval.invert = function(sInterval) {
-  return Interval.toCoord(sInterval).invert().toString();
-};
-
-module.exports = Interval;
-=======
 	Chord.prototype = {
 	  notes: function() {
 	    var root = this.root;
@@ -34298,20 +33232,13 @@ module.exports = Interval;
 	    return this.name;
 	  }
 	};
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	module.exports = Chord;
 
-<<<<<<< HEAD
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-=======
 	},{"./interval":3,"./knowledge":4,"./note":5,"daccord":10}],3:[function(require,module,exports){
 	var knowledge = require('./knowledge');
 	var vector = require('./vector');
 	var toCoord = require('interval-coords');
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	function Interval(coord) {
 	  if (!(this instanceof Interval)) return new Interval(coord);
@@ -34471,15 +33398,9 @@ module.exports = Interval;
 	  return from.interval(to);
 	};
 
-<<<<<<< HEAD
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-=======
 	Interval.between = function(from, to) {
 	  return new Interval(vector.sub(to.coord, from.coord));
 	};
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	Interval.invert = function(sInterval) {
 	  return Interval.toCoord(sInterval).invert().toString();
@@ -34865,22 +33786,14 @@ module.exports = Interval;
 	  var key, cents, originalFq;
 	  concertPitch = concertPitch || 440;
 
-<<<<<<< HEAD
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-=======
 	  key = 49 + 12 * ((Math.log(fq) - Math.log(concertPitch)) / Math.log(2));
 	  key = Math.round(key);
 	  originalFq = concertPitch * Math.pow(2, (key - 49) / 12);
 	  cents = 1200 * (Math.log(fq / originalFq) / Math.log(2));
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
 	  return { note: Note.fromKey(key), cents: cents };
 	};
 
-<<<<<<< HEAD
-=======
 	Note.fromMIDI = function(note) {
 	  return Note.fromKey(note - 20);
 	};
@@ -67851,6 +66764,5 @@ module.exports = Interval;
 	;
 	//# sourceMappingURL=vexflow-debug.js.map
 
->>>>>>> refs/remotes/origin/diatonicator-app-play
 /***/ })
 /******/ ]);
