@@ -1,0 +1,132 @@
+$breakpoint-mobile: 468px;
+
+.results-wrapper {
+    text-align: center;
+    padding-top: 15px;
+    line-height: 0;
+
+    .chord-results {
+        text-align: center;
+        width: auto;
+    
+        .interval-label {
+            font-weight: bold;
+        }
+    
+        .chord {
+            display: inline-block;
+            padding-right: 10px;
+    
+            button {
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-color: black;
+
+                .name {
+                    display: block;
+                    font-weight: bold;
+                    padding-top: 5px;
+                }
+
+                &:hover {
+                    background-color: 0875B2;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+ 
+.scales-wrapper {
+    .scale {
+        margin: 15 0 15 0;
+        padding: 15 0 15 0;
+    
+        cursor: pointer;
+        text-align: center;
+    
+        border-radius: 5px 5px 5px 5px;
+        -moz-border-radius: 5px 5px 5px 5px;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border: 1px solid #787878;
+
+        &:hover {
+            background-color: grey;
+            color: white;
+        }
+    }
+}
+
+.tonic-wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    button {
+        width: 100%;
+        border-color: black;
+        color: black;
+        background-color: white;
+
+        &:hover {
+            background-color: grey;
+        }
+    }
+}
+
+.staff-wrapper {
+    #notation {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.footer {
+    padding-top: 20px;
+    text-align: center;
+
+    .description {
+        font-style: italic;
+    }
+}
+
+.container {
+    &.desktop {
+        @media (max-width: $breakpoint-mobile){
+            display: none !important;
+        }
+
+        .state {
+            padding-top: 20px;
+        }
+    }
+
+    &.mobile {
+        @media (min-width: $breakpoint-mobile) {
+            display: none !important;
+        }
+
+        .row {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        .dropdown-wrapper {
+            display:inline-block;
+        }
+
+        .dropdown-menu {
+            a {
+                text-align: center;
+                font-weight: bold;
+                height: 30px;
+                display: block;
+            }
+        }
+
+        .state {
+            padding-top: 40px;
+            text-align: center;
+        }
+    }
+}

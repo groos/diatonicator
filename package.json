@@ -28,15 +28,26 @@
     "build": "npm run bundle && webpack"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.8",
     "jshint": ">=0.9.0",
     "vows": ">= 0.6.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "browser-sync": "^2.18.13",
+    "browserify": "^14.1.0",
     "daccord": "^1.0.1",
+    "gulp-sass": "^3.1.0",
     "helmholtz": "^2.0.1",
     "interval-coords": "^1.1.1",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "pitch-fq": "^1.0.0",
-    "scientific-notation": "^1.0.0"
+    "scientific-notation": "^1.0.0",
+    "tone": "^0.10.0",
+    "vexflow": "^1.2.83",
+    "webpack-stream": "^3.2.0"
   }
 }

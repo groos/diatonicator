@@ -1,0 +1,86 @@
+.results-wrapper {
+  text-align: center;
+  padding-top: 15px;
+  line-height: 0; }
+  .results-wrapper .chord-results {
+    text-align: center;
+    width: auto; }
+    .results-wrapper .chord-results .interval-label {
+      font-weight: bold; }
+    .results-wrapper .chord-results .chord {
+      display: inline-block;
+      padding-right: 10px; }
+      .results-wrapper .chord-results .chord button {
+        width: 100px;
+        height: 100px;
+        background-color: white;
+        border-color: black; }
+        .results-wrapper .chord-results .chord button .name {
+          display: block;
+          font-weight: bold;
+          padding-top: 5px; }
+        .results-wrapper .chord-results .chord button:hover {
+          background-color: 0875B2;
+          color: white; }
+
+.scales-wrapper .scale {
+  margin: 15 0 15 0;
+  padding: 15 0 15 0;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: 1px solid #787878; }
+  .scales-wrapper .scale:hover {
+    background-color: grey;
+    color: white; }
+
+.tonic-wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px; }
+  .tonic-wrapper button {
+    width: 100%;
+    border-color: black;
+    color: black;
+    background-color: white; }
+    .tonic-wrapper button:hover {
+      background-color: grey; }
+
+.staff-wrapper #notation {
+  margin-left: auto;
+  margin-right: auto; }
+
+.footer {
+  padding-top: 20px;
+  text-align: center; }
+  .footer .description {
+    font-style: italic; }
+
+@media (max-width: 468px) {
+  .container.desktop {
+    display: none !important; } }
+
+.container.desktop .state {
+  padding-top: 20px; }
+
+@media (min-width: 468px) {
+  .container.mobile {
+    display: none !important; } }
+
+.container.mobile .row {
+  text-align: center;
+  padding-top: 15px; }
+
+.container.mobile .dropdown-wrapper {
+  display: inline-block; }
+
+.container.mobile .dropdown-menu a {
+  text-align: center;
+  font-weight: bold;
+  height: 30px;
+  display: block; }
+
+.container.mobile .state {
+  padding-top: 40px;
+  text-align: center; }

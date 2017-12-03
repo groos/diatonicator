@@ -59,7 +59,6 @@ Diatonic.prototype = {
 		};
 	},
 	majorOrPerfectInterval: function (scale, rootIndex, intervalName){
-		//debugger;
 		var notes = this.getIntervalNotes(scale, rootIndex, intervalName)
 		
 		if (notes && notes.root && notes.interval){
