@@ -74,19 +74,12 @@ angular.module('diatonicator', [])
       updateStaff(chord);
     };
 
-<<<<<<< HEAD
-var handleScaleClick = function(e){
-  clearResults();
-  
-  var diatonic = new _diatonicator('a4', $(e.target).data('scale'));
-=======
     var playChord = function(chord){
       var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
       
       //play a chord
       polySynth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
     };
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
     var updateStaff = function(chord){
       var state = resetStaff();
@@ -144,15 +137,6 @@ var handleScaleClick = function(e){
       }
     }
 
-<<<<<<< HEAD
-var clearResults = function() {
-  $results.find('*').off();
-  $results.off().empty();
-  $results.append(html);
-};
-
-//document.body.appendChild(component());
-=======
     var updateResults = function() {
       diatonicator.handleScaleClick(getActiveScale());
     };
@@ -182,7 +166,6 @@ var clearResults = function() {
           interval: index + 1
         };
     });
->>>>>>> refs/remotes/origin/diatonicator-app-play
 
     diatonicator._scales = Modes.map(function (scaleName) {
       return {
