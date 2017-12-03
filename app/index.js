@@ -33,9 +33,10 @@ angular.module('diatonicator', [])
 
     diatonicator.description = "Diatonicator is a music theory practice tool that helps you learn and practice diatonic modes in any key. It began as a proof of concept, and continues to be a work in progress. Some day I will refactor the code :)";
     diatonicator.links = {
-      twitter: { text: 'Twitter', link: 'https://twitter.com/ntgroos'},
+      github: { text: 'Github', link: 'https://github.com/groos/diatonicator'},
       teoria: { text: 'Teoria.js', link: 'https://github.com/saebekassebil/teoria'},
-      tone: { text: 'Tone.js', link: 'https://tonejs.github.io/'}
+      tone: { text: 'Tone.js', link: 'https://tonejs.github.io/'},
+      twitter: { text: 'Twitter', link: 'https://twitter.com/ntgroos'}
     }
 
     diatonicator.keywords = "music, theory, guitar, piano, modes, ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, jazz, improvisation, scale, scales, tonic, diatonic, practice, key, diatonicator";
