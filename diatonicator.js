@@ -3,12 +3,15 @@ var teoria = require('./teoria')
 
 function Diatonic(root, scale){
 	this.root = teoria.note(root);
+	this.teoria = teoria;
+	this.piu = require('./node_modules/piu')
 	this.scale = this.root.scale(scale);
 };
 
 Diatonic.prototype = {
 	chordAt: function(index){
-		return this.diatonicChord(this.scale, index - 1);
+		//return this.diatonicChord(this.scale, index - 1);
+		return this.getPiuChord(this.scale, index-1);
 	},
 	diatonicChord: function (scale, rootIndex){
 		//debugger;
@@ -29,6 +32,28 @@ Diatonic.prototype = {
 			return scale.notes()[rootIndex].chord('m7b5');
 		}
 	},
+	getPiuChord: function(scale, rootIndex) {
+		// get the 4 notes
+		// interval is zero based, e.g. 'fifth' is 4
+		// use piu to get the chord name
+		var root = this.getIntervalNote(scale, rootIndex, 0);
+		var third = this.getIntervalNote(scale, rootIndex, 2);
+		var fifth = this.getIntervalNote(scale, rootIndex, 4);
+		var seventh = this.getIntervalNote(scale, rootIndex, 6);
+
+		result = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
+		result.name = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
+
+		return result;
+	},
+	getIntervalNote: function(scale, rootIndex, interval) {
+		var rootNote = scale.notes()[this.modInterval(rootIndex)];
+		var modInt = this.modInterval(rootIndex + interval);
+		var intervalNote = scale.notes()[this.modInterval(modInt)];
+		var intervalNote = modInt < rootIndex ? intervalNote.interval('P8') : intervalNote;
+
+		return intervalNote;
+	},
 	getIntervalNotes: function (scale, rootIndex, interval){
 		//debugger;
 
@@ -41,6 +66,9 @@ Diatonic.prototype = {
 				break;
 			case 'seventh':
 				interval = 6;
+				break;
+			case 'root':
+				interval = 0;
 				break;
 			default:
 				return "invalid interval name: use 'third', 'fifth', or 'seventh'"

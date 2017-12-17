@@ -7,7 +7,7 @@ angular.module('diatonicator', [])
     var Teoria = require('../teoria');
     var Diatonicator = require('../diatonicator');
     var Scale = require('../lib/scale');
-    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
+    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
     var VexChords = require('../lib/vexchords/chord.js');
     var Vex = require('vexflow');
 
@@ -43,7 +43,8 @@ angular.module('diatonicator', [])
     diatonicator.disclaimer = "Diatonicator is not approved for commercial use."
 
     diatonicator._tonic = "C3";
-    diatonicator._scale = "major";
+    //diatonicator._scale = "major";
+    diatonicator._scale = "harmonicminor"
 
     var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
 
