@@ -8,10 +8,12 @@ angular.module('diatonicator', [])
     var Diatonicator = require('../diatonicator');
     var Scale = require('../lib/scale');
     var ScaleTypes = ['major', 'melodicminor', 'harmonicminor'];
-    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
+    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
 
     // get modes given a scale type
-    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Aeolocrian', 'Super Locrian'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
+    var ModesDict = ['major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian']
+        , 'melodicminor': ['superlocrian', 'etc']
+        , 'harmonicminor' : ['crazy mode', 'crazy mode']];
 
 
     var VexChords = require('../lib/vexchords/chord.js');
@@ -48,9 +50,11 @@ angular.module('diatonicator', [])
     diatonicator.keywords = "music, theory, guitar, piano, modes, ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, jazz, improvisation, scale, scales, tonic, diatonic, practice, key, diatonicator";
     diatonicator.disclaimer = "Diatonicator is not approved for commercial use."
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     diatonicator._tonic = "C3";
-    diatonicator._scale = "ionian"
-    diatonicator._scaleType = "major"
+    //diatonicator._scale = "major";
+    diatonicator._scale = "harmonicminor"
 
     var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
 
@@ -78,9 +82,8 @@ angular.module('diatonicator', [])
     };
 
     diatonicator.setScaleType = function(scaleType) {
-      diatonicator._scaleType = scaleType;
-      diatonicator._scales = setModes();
-    };
+      this._scaleType = scaleType;
+    }
 
     diatonicator.pickChord = function(chord){
       playChord(chord);
@@ -180,7 +183,6 @@ angular.module('diatonicator', [])
         };
     });
 
-
     var getModes = function(scaleType){
       var modesList = ModesDict[scaleType];
 
@@ -191,11 +193,7 @@ angular.module('diatonicator', [])
       });
     };
 
-    var setModes = function() {
-      return getModes(diatonicator._scaleType);
-    };
-
-    diatonicator._scales = setModes();
+    diatonicator._scales = getModes(this._scaleType);
 
     diatonicator._scaleTypes = ScaleTypes.map(function(scaleTypeName){
       return {

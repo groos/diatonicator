@@ -18,7 +18,17 @@
     <div ng-controller="diatonicController as diatonicator">
         <div class="container desktop">
             <div class="row">
-                <div class="col-md-12 tonic-wrapper">
+	            <div class="col-md-2">
+	            	<div class="dropdown-wrapper col-sm-6">
+	                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Scale Type</button>
+	                    <div class="dropdown-menu">
+	                        <div>
+	                            <a ng-repeat="scaleType in diatonicator._scaleTypes" ng-click="diatonicator.setScaleType(scaleType.name)" href="#">{{scaleType.name}}</a>
+	                        </div>
+	                    </div>
+                	</div>
+	            </div>
+                <div class="col-md-10 tonic-wrapper">
                     <div class="col-md-1 tonic" ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
                         <button type="button" class="btn btn-primary">{{tonic.name}}</button>
                     </div>
@@ -37,6 +47,7 @@
                             <div class="state">
                                 <h4>Tonic: {{diatonicator._tonic}}</h4>
                                 <h4>Mode: {{diatonicator._scale}}</h4>
+                                <h4>Scale Type: {{diatonicator._scaleType}}</h4>
                                 
                             </div>
                         </div>

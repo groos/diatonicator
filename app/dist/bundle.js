@@ -53,7 +53,13 @@
 	    var Teoria = __webpack_require__(3);
 	    var Diatonicator = __webpack_require__(4);
 	    var Scale = __webpack_require__(10);
-	    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
+	    var ScaleTypes = ['major', 'melodicminor', 'harmonicminor'];
+	    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
+
+	    // get modes given a scale type
+	    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Aeolocrian', 'Super Locrian'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
+
+
 	    var VexChords = __webpack_require__(15);
 	    var Vex = __webpack_require__(17);
 
@@ -89,7 +95,8 @@
 	    diatonicator.disclaimer = "Diatonicator is not approved for commercial use."
 
 	    diatonicator._tonic = "C3";
-	    diatonicator._scale = "major";
+	    diatonicator._scale = "ionian"
+	    diatonicator._scaleType = "major"
 
 	    var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
 
@@ -114,6 +121,11 @@
 	          diatonicator.results.push(chord);
 	        }
 	      }
+	    };
+
+	    diatonicator.setScaleType = function(scaleType) {
+	      diatonicator._scaleType = scaleType;
+	      diatonicator._scales = setModes();
 	    };
 
 	    diatonicator.pickChord = function(chord){
@@ -214,10 +226,27 @@
 	        };
 	    });
 
-	    diatonicator._scales = Modes.map(function (scaleName) {
+
+	    var getModes = function(scaleType){
+	      var modesList = ModesDict[scaleType];
+
+	      return modesList.map(function(modeName){
+	        return {
+	          name : modeName
+	        };
+	      });
+	    };
+
+	    var setModes = function() {
+	      return getModes(diatonicator._scaleType);
+	    };
+
+	    diatonicator._scales = setModes();
+
+	    diatonicator._scaleTypes = ScaleTypes.map(function(scaleTypeName){
 	      return {
-	        name: scaleName
-	      };
+	        name: scaleTypeName
+	      }
 	    });
 	  });
 
@@ -34325,10 +34354,11 @@
 
 	
 	var teoria = __webpack_require__(3)
-	var piu = __webpack_require__(5)
 
 	function Diatonic(root, scale){
 		this.root = teoria.note(root);
+		this.teoria = teoria;
+		this.piu = __webpack_require__(5)
 		this.scale = this.root.scale(scale);
 	};
 
@@ -34365,7 +34395,18 @@
 			var fifth = this.getIntervalNote(scale, rootIndex, 4);
 			var seventh = this.getIntervalNote(scale, rootIndex, 6);
 
-			debugger;
+			var piuChord = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
+			var chordType = piuChord.type;
+
+			var piuName = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
+
+			// not sure if this will work
+			return scale.notes()[rootIndex].chord(chordType);
+
+			//result = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
+			//result.name = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
+
+			//return result;
 		},
 		getIntervalNote: function(scale, rootIndex, interval) {
 			var rootNote = scale.notes()[this.modInterval(rootIndex)];
@@ -34376,8 +34417,6 @@
 			return intervalNote;
 		},
 		getIntervalNotes: function (scale, rootIndex, interval){
-			//debugger;
-
 			switch (interval){
 				case 'third':
 					interval = 2;
