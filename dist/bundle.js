@@ -33850,7 +33850,8 @@
 	  minorpentatonic: ['P1', 'm3', 'P4', 'P5', 'm7'],
 	  mixolydian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'm7'],
 	  phrygian: ['P1', 'm2', 'm3', 'P4', 'P5', 'm6', 'm7'],
-	  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6']
+	  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6'],
+	  Phrygidorian: ['P1', 'm2', 'm3', 'P4', 'P5', 'M6', 'm7']
 	};
 
 	// synonyms
@@ -34786,7 +34787,8 @@
 	  minorpentatonic: ['P1', 'm3', 'P4', 'P5', 'm7'],
 	  mixolydian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'm7'],
 	  phrygian: ['P1', 'm2', 'm3', 'P4', 'P5', 'm6', 'm7'],
-	  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6']
+	  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6'],
+	  Phrygidorian: ['P1', 'm2', 'm3', 'P4', 'P5', 'M6', 'm7']
 	};
 
 	// synonyms
