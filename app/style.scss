@@ -62,11 +62,31 @@ $breakpoint-mobile: 468px;
     padding-top: 40px;
     padding-bottom: 40px;
 
+    .dropdown-wrapper {
+        .dropdown-menu {
+            padding-left: 15px;
+            margin-left: 15px;
+        }
+
+        .scale-type-dropdown {
+            a {
+                display: block;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+        }
+        
+    }
+
     button {
         width: 100%;
         border-color: black;
         color: black;
         background-color: white;
+
+        &.scale-type {
+            width: 160px;
+        }
 
         &:hover {
             background-color: grey;

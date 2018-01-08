@@ -39,11 +39,20 @@
 .tonic-wrapper {
   padding-top: 40px;
   padding-bottom: 40px; }
+  .tonic-wrapper .dropdown-wrapper .dropdown-menu {
+    padding-left: 15px;
+    margin-left: 15px; }
+  .tonic-wrapper .dropdown-wrapper .scale-type-dropdown a {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px; }
   .tonic-wrapper button {
     width: 100%;
     border-color: black;
     color: black;
     background-color: white; }
+    .tonic-wrapper button.scale-type {
+      width: 160px; }
     .tonic-wrapper button:hover {
       background-color: grey; }
 

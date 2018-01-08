@@ -18,11 +18,11 @@
     <div ng-controller="diatonicController as diatonicator">
         <div class="container desktop">
             <div class="row">
-	            <div class="col-md-2">
+	            <div class="col-md-2 tonic-wrapper">
 	            	<div class="dropdown-wrapper col-sm-6">
-	                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Scale Type</button>
+	                    <button class="btn btn-secondary dropdown-toggle scale-type" type="button" data-toggle="dropdown">Scale Type</button>
 	                    <div class="dropdown-menu">
-	                        <div>
+	                        <div class="scale-type-dropdown">
 	                            <a ng-repeat="scaleType in diatonicator._scaleTypes" ng-click="diatonicator.setScaleType(scaleType.name)" href="#">{{scaleType.name}}</a>
 	                        </div>
 	                    </div>

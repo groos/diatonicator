@@ -5,10 +5,14 @@ function Diatonic(root, scale){
 	this.root = teoria.note(root);
 	this.teoria = teoria;
 	this.piu = require('./node_modules/piu')
-	this.scale = this.root.scale(scale);
+	this.scale = this.root.scale(this.getModeName(scale));
 };
 
 Diatonic.prototype = {
+	getModeName: function(key) {
+		return this.modeNames[key] ? this.modeNames[key] : key;
+	},
+	modeNames: { 'Melodic Minor' : 'melodicminor', 'Phrygidorian' : 'phrygidorian', 'Lydian Augmented' : 'lydianaugmented', 'Lydian Dominant' : 'lydiandominant', 'Myxaeolian' : 'myxaeolian', 'Half-Diminished': 'halfdiminished', 'Altered Dominant' : 'altereddominant'},
 	chordAt: function(index){
 		//return this.diatonicChord(this.scale, index - 1);
 		return this.getPiuChord(this.scale, index-1);

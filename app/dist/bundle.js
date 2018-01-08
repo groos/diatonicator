@@ -57,7 +57,7 @@
 	    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
 
 	    // get modes given a scale type
-	    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Aeolocrian', 'Super Locrian'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
+	    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Half-Diminished', 'Altered Dominant'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
 
 
 	    var VexChords = __webpack_require__(15);
@@ -33851,7 +33851,12 @@
 	  mixolydian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'm7'],
 	  phrygian: ['P1', 'm2', 'm3', 'P4', 'P5', 'm6', 'm7'],
 	  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6'],
-	  Phrygidorian: ['P1', 'm2', 'm3', 'P4', 'P5', 'M6', 'm7']
+	  phrygidorian: ['P1', 'm2', 'm3', 'P4', 'P5', 'M6', 'm7'],
+	  lydianaugmented: ['P1', 'M2', 'M3', 'A4', 'A5', 'M6', 'M7'],
+	  lydiandominant: ['P1', 'M2', 'M3', 'A4', 'P5', 'M6', 'm7'],
+	  myxaeolian: ['P1', 'M2', 'M3', 'P4', 'P5', 'm6', 'm7'],
+	  halfdiminished: ['P1', 'M2', 'm3', 'P4', 'd5', 'm6', 'm7'],
+	  altereddominant: ['P1', 'm2', 'm3', 'd4', 'd5', 'm6', 'm7']
 	};
 
 	// synonyms
@@ -34360,10 +34365,14 @@
 		this.root = teoria.note(root);
 		this.teoria = teoria;
 		this.piu = __webpack_require__(5)
-		this.scale = this.root.scale(scale);
+		this.scale = this.root.scale(this.getModeName(scale));
 	};
 
 	Diatonic.prototype = {
+		getModeName: function(key) {
+			return this.modeNames[key] ? this.modeNames[key] : key;
+		},
+		modeNames: { 'Melodic Minor' : 'melodicminor', 'Phrygidorian' : 'phrygidorian', 'Lydian Augmented' : 'lydianaugmented', 'Lydian Dominant' : 'lydiandominant', 'Myxaeolian' : 'myxaeolian', 'Half-Diminished': 'halfdiminished', 'Altered Dominant' : 'altereddominant'},
 		chordAt: function(index){
 			//return this.diatonicChord(this.scale, index - 1);
 			return this.getPiuChord(this.scale, index-1);
@@ -34788,7 +34797,12 @@
 	  mixolydian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'm7'],
 	  phrygian: ['P1', 'm2', 'm3', 'P4', 'P5', 'm6', 'm7'],
 	  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6'],
-	  Phrygidorian: ['P1', 'm2', 'm3', 'P4', 'P5', 'M6', 'm7']
+	  phrygidorian: ['P1', 'm2', 'm3', 'P4', 'P5', 'M6', 'm7'],
+	  lydianaugmented: ['P1', 'M2', 'M3', 'A4', 'A5', 'M6', 'M7'],
+	  lydiandominant: ['P1', 'M2', 'M3', 'A4', 'P5', 'M6', 'm7'],
+	  myxaeolian: ['P1', 'M2', 'M3', 'P4', 'P5', 'm6', 'm7'],
+	  halfdiminished: ['P1', 'M2', 'm3', 'P4', 'd5', 'm6', 'm7'],
+	  altereddominant: ['P1', 'm2', 'm3', 'd4', 'd5', 'm6', 'm7']
 	};
 
 	// synonyms

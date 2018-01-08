@@ -11,7 +11,7 @@ angular.module('diatonicator', [])
     var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
 
     // get modes given a scale type
-    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Aeolocrian', 'Super Locrian'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
+    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Half-Diminished', 'Altered Dominant'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
 
 
     var VexChords = require('../lib/vexchords/chord.js');
