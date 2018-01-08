@@ -28,7 +28,8 @@
 
 .scales-wrapper .scale {
   margin: 15 0 15 0;
-  padding: 15 0 15 0;
+  padding: 19 0 15 0;
+  height: 60px;
   cursor: pointer;
   text-align: center;
   border-radius: 5px 5px 5px 5px;
@@ -38,6 +39,14 @@
   transition: all 200ms ease; }
   .scales-wrapper .scale:hover {
     color: black;
+    padding-top: 15px;
+    font-weight: 700;
+    background-color: #5E8BFF;
+    border-width: 5px; }
+  .scales-wrapper .scale.active {
+    color: black;
+    padding-top: 15px;
+    font-weight: 700;
     background-color: #5E8BFF;
     border-width: 5px; }
 
