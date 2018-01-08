@@ -14,14 +14,17 @@
         width: 100px;
         height: 100px;
         background-color: white;
-        border-color: black; }
+        border-color: black;
+        transition: all 200ms ease; }
         .results-wrapper .chord-results .chord button .name {
           display: block;
           font-weight: bold;
           padding-top: 5px; }
         .results-wrapper .chord-results .chord button:hover {
-          background-color: 0875B2;
-          color: white; }
+          background-color: #5E8BFF;
+          color: white;
+          font-weight: 700;
+          border-width: 5px; }
 
 .scales-wrapper .scale {
   margin: 15 0 15 0;
@@ -31,10 +34,12 @@
   border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
-  border: 1px solid #787878; }
+  border: 1px solid black;
+  transition: all 200ms ease; }
   .scales-wrapper .scale:hover {
-    background-color: grey;
-    color: white; }
+    color: black;
+    background-color: #5E8BFF;
+    border-width: 5px; }
 
 .tonic-wrapper {
   padding-top: 40px;
@@ -50,11 +55,17 @@
     width: 100%;
     border-color: black;
     color: black;
-    background-color: white; }
+    height: 40px;
+    background-color: white;
+    transition: all 200ms ease; }
     .tonic-wrapper button.scale-type {
       width: 160px; }
     .tonic-wrapper button:hover {
-      background-color: grey; }
+      background-color: #5E8BFF;
+      border-color: black;
+      color: black;
+      font-weight: 700;
+      border-width: 5px; }
 
 .staff-wrapper #notation {
   margin-left: auto;

@@ -1,4 +1,9 @@
 $breakpoint-mobile: 468px;
+$button-color: white;
+$border-color: #2C3B63;
+$background-color: #5E8BFF;
+$border-color-highlight: #2C3B63;
+$background-color-highlight: #5E8BFF;
 
 .results-wrapper {
     text-align: center;
@@ -22,6 +27,7 @@ $breakpoint-mobile: 468px;
                 height: 100px;
                 background-color: white;
                 border-color: black;
+                transition: all 200ms ease;
 
                 .name {
                     display: block;
@@ -30,8 +36,10 @@ $breakpoint-mobile: 468px;
                 }
 
                 &:hover {
-                    background-color: 0875B2;
+                    background-color: $background-color-highlight;
                     color: white;
+                    font-weight:700;
+                    border-width: 5px;
                 }
             }
         }
@@ -49,11 +57,14 @@ $breakpoint-mobile: 468px;
         border-radius: 5px 5px 5px 5px;
         -moz-border-radius: 5px 5px 5px 5px;
         -webkit-border-radius: 5px 5px 5px 5px;
-        border: 1px solid #787878;
+        border: 1px solid black;
+
+        transition: all 200ms ease;
 
         &:hover {
-            background-color: grey;
-            color: white;
+            color: black;
+            background-color: $background-color-highlight;
+            border-width: 5px;
         }
     }
 }
@@ -82,14 +93,20 @@ $breakpoint-mobile: 468px;
         width: 100%;
         border-color: black;
         color: black;
+        height: 40px;
         background-color: white;
+        transition: all 200ms ease;
 
         &.scale-type {
             width: 160px;
         }
 
         &:hover {
-            background-color: grey;
+            background-color: $background-color-highlight;
+            border-color: black;
+            color: black;
+            font-weight:700;
+            border-width: 5px;
         }
     }
 }
