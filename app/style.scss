@@ -35,9 +35,8 @@ $background-color-highlight: #5E8BFF;
                     padding-top: 5px;
                 }
 
-                &:hover {
+                &:hover, &.active {
                     background-color: $background-color-highlight;
-                    color: white;
                     font-weight:700;
                     border-width: 5px;
                 }
@@ -62,15 +61,7 @@ $background-color-highlight: #5E8BFF;
 
         transition: all 200ms ease;
 
-        &:hover {
-            color: black;
-            padding-top: 15px;
-            font-weight:700;
-            background-color: $background-color-highlight;
-            border-width: 5px;
-        }
-
-        &.active {
+        &:hover, &.active {
             color: black;
             padding-top: 15px;
             font-weight:700;
@@ -86,8 +77,10 @@ $background-color-highlight: #5E8BFF;
 
     .dropdown-wrapper {
         .dropdown-menu {
+            border: 1px solid black;
             padding-left: 15px;
             margin-left: 15px;
+            margin-top: -1px;
         }
 
         .scale-type-dropdown {
@@ -95,6 +88,11 @@ $background-color-highlight: #5E8BFF;
                 display: block;
                 margin-top: 5px;
                 margin-bottom: 5px;
+
+                &:hover {
+                    font-weight:700;
+                    border-width: 5px;
+                }
             }
         }
         
@@ -112,7 +110,7 @@ $background-color-highlight: #5E8BFF;
             width: 160px;
         }
 
-        &:hover {
+        &:hover, &.active {
             background-color: $background-color-highlight;
             border-color: black;
             color: black;

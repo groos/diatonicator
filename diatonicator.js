@@ -46,17 +46,10 @@ Diatonic.prototype = {
 		var seventh = this.getIntervalNote(scale, rootIndex, 6);
 
 		var piuChord = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
-		var chordType = piuChord.type;
 
 		var piuName = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
 
-		// not sure if this will work
-		return scale.notes()[rootIndex].chord(chordType);
-
-		//result = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
-		//result.name = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
-
-		//return result;
+		return this.teoria.chord(piuName);
 	},
 	getIntervalNote: function(scale, rootIndex, interval) {
 		var rootNote = scale.notes()[this.modInterval(rootIndex)];

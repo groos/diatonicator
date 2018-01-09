@@ -52,6 +52,8 @@ angular.module('diatonicator', [])
     diatonicator._scale = "ionian"
     diatonicator._scaleType = "major"
 
+    diatonicator.synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
+
     var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
 
     var formatTonicName = function (name) {
@@ -83,15 +85,14 @@ angular.module('diatonicator', [])
     };
 
     diatonicator.pickChord = function(chord){
+      diatonicator.activeChord = chord;
       playChord(chord);
       updateStaff(chord);
     };
 
-    var playChord = function(chord){
-      var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
-      
+    var playChord = function(chord){      
       //play a chord
-      polySynth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
+      diatonicator.synth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
     };
 
     var updateStaff = function(chord){

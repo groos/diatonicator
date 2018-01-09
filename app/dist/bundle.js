@@ -98,6 +98,8 @@
 	    diatonicator._scale = "ionian"
 	    diatonicator._scaleType = "major"
 
+	    diatonicator.synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
+
 	    var chromatic = Teoria.note(diatonicator._tonic).scale('chromatic');
 
 	    var formatTonicName = function (name) {
@@ -129,15 +131,14 @@
 	    };
 
 	    diatonicator.pickChord = function(chord){
+	      diatonicator.activeChord = chord;
 	      playChord(chord);
 	      updateStaff(chord);
 	    };
 
-	    var playChord = function(chord){
-	      var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
-	      
+	    var playChord = function(chord){      
 	      //play a chord
-	      polySynth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
+	      diatonicator.synth.triggerAttackRelease([chord.get("first").toString(), chord.get("third").toString(), chord.get("fifth").toString(), chord.get("seventh").toString()], "2n");
 	    };
 
 	    var updateStaff = function(chord){
@@ -34406,17 +34407,10 @@
 			var seventh = this.getIntervalNote(scale, rootIndex, 6);
 
 			var piuChord = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
-			var chordType = piuChord.type;
 
 			var piuName = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
 
-			// not sure if this will work
-			return scale.notes()[rootIndex].chord(chordType);
-
-			//result = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note))[0];
-			//result.name = this.piu.infer([root.toString(true), third.toString(true), fifth.toString(true), seventh.toString(true)].map(this.teoria.note)).map(this.piu.name)[0];
-
-			//return result;
+			return this.teoria.chord(piuName);
 		},
 		getIntervalNote: function(scale, rootIndex, interval) {
 			var rootNote = scale.notes()[this.modInterval(rootIndex)];

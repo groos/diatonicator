@@ -30,7 +30,7 @@
 	            </div>
                 <div class="col-md-10 tonic-wrapper">
                     <div class="col-md-1 tonic" ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
-                        <button type="button" class="btn btn-primary">{{tonic.name}}</button>
+                        <button type="button" class="btn btn-primary" ng-class="{'active' : diatonicator._tonic == tonic.name + '3'}">{{tonic.name}}</button>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="col-md-12">
                     <div class="col-md-2">
                         <div class="scales-wrapper">
-                            <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)">
+                            <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)" ng-class="{ 'active' : diatonicator._scale == scale.name}">
                                 <span class="text scale-text">{{scale.name}}</span>
                             </div>
 
@@ -57,7 +57,7 @@
                         <div class="results-wrapper">
                             <div class="chord-results">
                                 <div class="chord" ng-repeat="chord in diatonicator.results">
-                                    <button type="button" class="btn btn-secondary" ng-click="diatonicator.pickChord(chord)">{{chord.interval}}<span class="name">{{chord.name}}</span></button>
+                                    <button type="button" class="btn btn-secondary" ng-click="diatonicator.pickChord(chord)" ng-class="{ 'active' : diatonicator.activeChord == chord}">{{chord.interval}}<span class="name">{{chord.name}}</span></button>
                                 </div>
                             </div>
                         </div>

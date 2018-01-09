@@ -20,9 +20,8 @@
           display: block;
           font-weight: bold;
           padding-top: 5px; }
-        .results-wrapper .chord-results .chord button:hover {
+        .results-wrapper .chord-results .chord button:hover, .results-wrapper .chord-results .chord button.active {
           background-color: #5E8BFF;
-          color: white;
           font-weight: 700;
           border-width: 5px; }
 
@@ -37,13 +36,7 @@
   -webkit-border-radius: 5px 5px 5px 5px;
   border: 1px solid black;
   transition: all 200ms ease; }
-  .scales-wrapper .scale:hover {
-    color: black;
-    padding-top: 15px;
-    font-weight: 700;
-    background-color: #5E8BFF;
-    border-width: 5px; }
-  .scales-wrapper .scale.active {
+  .scales-wrapper .scale:hover, .scales-wrapper .scale.active {
     color: black;
     padding-top: 15px;
     font-weight: 700;
@@ -54,12 +47,17 @@
   padding-top: 40px;
   padding-bottom: 40px; }
   .tonic-wrapper .dropdown-wrapper .dropdown-menu {
+    border: 1px solid black;
     padding-left: 15px;
-    margin-left: 15px; }
+    margin-left: 15px;
+    margin-top: -1px; }
   .tonic-wrapper .dropdown-wrapper .scale-type-dropdown a {
     display: block;
     margin-top: 5px;
     margin-bottom: 5px; }
+    .tonic-wrapper .dropdown-wrapper .scale-type-dropdown a:hover {
+      font-weight: 700;
+      border-width: 5px; }
   .tonic-wrapper button {
     width: 100%;
     border-color: black;
@@ -69,7 +67,7 @@
     transition: all 200ms ease; }
     .tonic-wrapper button.scale-type {
       width: 160px; }
-    .tonic-wrapper button:hover {
+    .tonic-wrapper button:hover, .tonic-wrapper button.active {
       background-color: #5E8BFF;
       border-color: black;
       color: black;
