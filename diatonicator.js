@@ -12,7 +12,7 @@ Diatonic.prototype = {
 	getModeName: function(key) {
 		return this.modeNames[key] ? this.modeNames[key] : key;
 	},
-	modeNames: { 'Melodic Minor' : 'melodicminor', 'Phrygidorian' : 'phrygidorian', 'Lydian Augmented' : 'lydianaugmented', 'Lydian Dominant' : 'lydiandominant', 'Myxaeolian' : 'myxaeolian', 'Half-Diminished': 'halfdiminished', 'Altered Dominant' : 'altereddominant'},
+	modeNames: { 'Melodic Minor' : 'melodicminor', 'Phrygidorian' : 'phrygidorian', 'Lydian Augmented' : 'lydianaugmented', 'Lydian Dominant' : 'lydiandominant', 'Myxaeolian' : 'myxaeolian', 'Half-Diminished': 'halfdiminished', 'Altered Dominant' : 'altereddominant', 'Harmonic Minor': 'harmonicminor', 'Locrian #6' : 'locrian6', 'Ionian #5' : 'ionian5', 'Dorian #4' : 'dorian4', 'Phrygian Dominant' : 'phrygiandominant', 'Lydian #2' : 'lydian2', 'Superlocrian' : 'superlocrian'},
 	chordAt: function(index){
 		//return this.diatonicChord(this.scale, index - 1);
 		return this.getPiuChord(this.scale, index-1);

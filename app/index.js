@@ -7,12 +7,11 @@ angular.module('diatonicator', [])
     var Teoria = require('../teoria');
     var Diatonicator = require('../diatonicator');
     var Scale = require('../lib/scale');
-    var ScaleTypes = ['major', 'melodicminor', 'harmonicminor'];
+    var ScaleTypes = [{ lookup: 'major', name : 'Major'}, { lookup: 'melodicminor', name : 'Melodic Minor'}, { lookup: 'harmonicminor', name: 'Harmonic Minor'}];
     var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
 
     // get modes given a scale type
-    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Half-Diminished', 'Altered Dominant'], 'harmonicminor' : ['crazy mode', 'crazy mode']};
-
+    var ModesDict = {'major' : ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'], 'melodicminor': ['Melodic Minor', 'Phrygidorian', 'Lydian Augmented', 'Lydian Dominant', 'Myxaeolian', 'Half-Diminished', 'Altered Dominant'], 'harmonicminor' : ['Harmonic Minor', 'Locrian #6', 'Ionian #5', 'Dorian #4', 'Phrygian Dominant', 'Lydian #2', 'Superlocrian']};
 
     var VexChords = require('../lib/vexchords/chord.js');
     var Vex = require('vexflow');
@@ -48,7 +47,7 @@ angular.module('diatonicator', [])
     diatonicator.keywords = "music, theory, guitar, piano, modes, ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, jazz, improvisation, scale, scales, tonic, diatonic, practice, key, diatonicator";
     diatonicator.disclaimer = "Diatonicator is not approved for commercial use."
 
-    diatonicator._tonic = "C3";
+    diatonicator._tonic = "G3";
     diatonicator._scale = "ionian"
     diatonicator._scaleType = "major"
 
@@ -80,7 +79,7 @@ angular.module('diatonicator', [])
     };
 
     diatonicator.setScaleType = function(scaleType) {
-      diatonicator._scaleType = scaleType;
+      diatonicator._scaleType = scaleType.lookup;
       diatonicator._scales = setModes();
     };
 
@@ -198,9 +197,7 @@ angular.module('diatonicator', [])
 
     diatonicator._scales = setModes();
 
-    diatonicator._scaleTypes = ScaleTypes.map(function(scaleTypeName){
-      return {
-        name: scaleTypeName
-      }
+    diatonicator._scaleTypes = ScaleTypes.map(function(scaleType){
+      return scaleType;
     });
   });
