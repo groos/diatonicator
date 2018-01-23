@@ -53,7 +53,7 @@
 	    var Teoria = __webpack_require__(3);
 	    var Diatonicator = __webpack_require__(4);
 	    var Scale = __webpack_require__(10);
-	    var ScaleTypes = [{ lookup: 'major', name : 'Major'}, { lookup: 'melodicminor', name : 'Melodic Minor'}, { lookup: 'harmonicminor', name: 'Harmonic Minor'}];
+	    var ScaleTypes = [{ lookup: 'major', name : 'Major'}, { lookup: 'melodicminor', name : 'Melodic Minor (beta)'}, { lookup: 'harmonicminor', name: 'Harmonic Minor (beta)'}];
 	    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
 
 	    // get modes given a scale type
@@ -96,6 +96,7 @@
 	    diatonicator._tonic = "G3";
 	    diatonicator._scale = "ionian"
 	    diatonicator._scaleType = "major"
+	    diatonicator._scaleTypeName = "Major";
 
 	    diatonicator.synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
 
@@ -126,6 +127,7 @@
 
 	    diatonicator.setScaleType = function(scaleType) {
 	      diatonicator._scaleType = scaleType.lookup;
+	      diatonicator._scaleTypeName = scaleType.name;
 	      diatonicator._scales = setModes();
 	    };
 

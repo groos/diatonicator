@@ -54,7 +54,8 @@
   .tonic-wrapper .dropdown-wrapper .scale-type-dropdown a {
     display: block;
     margin-top: 5px;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    font-size: 12px; }
     .tonic-wrapper .dropdown-wrapper .scale-type-dropdown a:hover {
       font-weight: 700;
       border-width: 5px; }

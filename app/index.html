@@ -6,11 +6,15 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="../dist/bundle.js"></script>
-    <!-- <link rel="stylesheet" href="../css/style.css"> -->
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- azure environment -->
+    <link rel="stylesheet" href="app/css/style.css">
+
+    <!-- local dev -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=""Diatonicator is a music theory practice tool that helps you learn and practice diatonic modes in any key. It began as a proof of concept, and continues to be a work in progress. Some day I will refactor the code :)">
+    <meta name="description" content="Diatonicator is a music theory practice tool that helps you learn and practice diatonic modes in any key. It began as a proof of concept, and continues to be a work in progress. Some day I will refactor the code :)">
     <meta name="keywords" content="music, theory, guitar, piano, modes, ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, jazz, improvisation, scale, scales, tonic, diatonic, practice, key, diatonicator">
 </head>
 
@@ -47,7 +51,7 @@
                             <div class="state">
                                 <h4>Tonic: {{diatonicator._tonic}}</h4>
                                 <h4>Mode: {{diatonicator._scale}}</h4>
-                                <h4>Scale Type: {{diatonicator._scaleType}}</h4>
+                                <h4>Scale Type: {{diatonicator._scaleTypeName}}</h4>
                                 
                             </div>
                         </div>
