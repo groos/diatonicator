@@ -53,7 +53,8 @@
 	    var Teoria = __webpack_require__(3);
 	    var Diatonicator = __webpack_require__(4);
 	    var Scale = __webpack_require__(10);
-	    var ScaleTypes = [{ lookup: 'major', name : 'Major'}, { lookup: 'melodicminor', name : 'Melodic Minor (beta)'}, { lookup: 'harmonicminor', name: 'Harmonic Minor (beta)'}];
+	    var ScaleTypes = [{ lookup: 'major', name : 'Major'}];
+	    var ScaleTypesBeta = [{ lookup: 'major', name : 'Major'}, { lookup: 'melodicminor', name : 'Melodic Minor (beta)'}, { lookup: 'harmonicminor', name: 'Harmonic Minor (beta)'}];
 	    var Modes = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian', 'harmonicminor', 'melodicminor'];
 
 	    // get modes given a scale type
@@ -97,6 +98,7 @@
 	    diatonicator._scale = "ionian"
 	    diatonicator._scaleType = "major"
 	    diatonicator._scaleTypeName = "Major";
+	    diatonicator.activeNotes = [];
 
 	    diatonicator.synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
 
@@ -158,6 +160,7 @@
 	          notes.push(new vf.StaveNote({clef: 'treble', keys: [note + '/4'], duration : 'q'}));
 	        }
 	        
+	        diatonicator.activeNotes.push(note.charAt(0).toUpperCase() + note.slice(1));
 	      }.bind(this));
 
 	      vf.Formatter.FormatAndDraw(state.context, state.stave, notes);
@@ -182,6 +185,8 @@
 	    };
 
 	    var resetStaff = function() {
+	      diatonicator.activeNotes = [];
+
 	      $('#notation svg').remove();
 	      var renderer = new vf.Renderer(div, vf.Renderer.Backends.SVG);
 	      renderer.resize(500, 500);
@@ -199,10 +204,12 @@
 	    }
 
 	    var updateResults = function() {
+	      diatonicator.activeNotes = [];
 	      diatonicator.handleScaleClick(getActiveScale());
 	    };
 	     
 	    var clearResults = function(){
+	      diatonicator.activeNotes = [];
 	      diatonicator.results = [];
 	    };
 
@@ -246,6 +253,10 @@
 	    diatonicator._scales = setModes();
 
 	    diatonicator._scaleTypes = ScaleTypes.map(function(scaleType){
+	      return scaleType;
+	    });
+
+	    diatonicator._scaleTypesBeta = ScaleTypesBeta.map(function(scaleType){
 	      return scaleType;
 	    });
 	  });

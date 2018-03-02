@@ -44,6 +44,10 @@ $background-color-highlight: #5E8BFF;
         }
     }
 }
+
+.results-notes {
+    
+}
  
 .scales-wrapper {
     .scale {
@@ -176,4 +180,17 @@ $background-color-highlight: #5E8BFF;
             text-align: center;
         }
     }
+
+
 }
+
+.home-page {
+    //font-family: 'helvetica';
+    h1 {
+        font-weight: 800;
+    }
+    .pad-top {
+        padding-top: 20px
+    }
+}
+

@@ -112,3 +112,9 @@
 .container.mobile .state {
   padding-top: 40px;
   text-align: center; }
+
+.home-page h1 {
+  font-weight: 800; }
+
+.home-page .pad-top {
+  padding-top: 20px; }

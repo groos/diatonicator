@@ -1,0 +1,143 @@
+<html ng-app="diatonicator">
+
+<head>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="../dist/bundle.js"></script>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4240853932460525",
+        enable_page_level_ads: true
+    });
+    </script>
+
+    <!-- azure environment -->
+    <link rel="stylesheet" href="../app/css/style.css">
+
+    <!-- local dev -->
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+
+    <title>Diatonicator: A music theory practice tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Diatonicator is a music theory practice tool that helps you learn and practice diatonic modes in any key. It began as a proof of concept, and continues to be a work in progress. Some day I will refactor the code :)">
+    <meta name="keywords" content="music, theory, guitar, piano, modes, ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian, jazz, improvisation, scale, scales, tonic, diatonic, practice, key, diatonicator">
+</head>
+
+<body>
+    <div ng-controller="diatonicController as diatonicator">
+        <div class="container desktop">
+            <div class="row">
+	            <div class="col-md-2 tonic-wrapper">
+	            	<div class="dropdown-wrapper col-sm-6">
+	                    <button class="btn btn-secondary dropdown-toggle scale-type" type="button" data-toggle="dropdown">Scale Type</button>
+	                    <div class="dropdown-menu">
+	                        <div class="scale-type-dropdown">
+	                            <a ng-repeat="scaleType in diatonicator._scaleTypes" ng-click="diatonicator.setScaleType(scaleType)" href="#">{{scaleType.name}}</a>
+	                        </div>
+	                    </div>
+                	</div>
+	            </div>
+                <div class="col-md-10 tonic-wrapper">
+                    <div class="col-md-1 tonic" ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)">
+                        <button type="button" class="btn btn-primary" ng-class="{'active' : diatonicator._tonic == tonic.name + '3'}">{{tonic.name}}</button>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="row content">
+
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        <div class="scales-wrapper">
+                            <div class="scale" ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)" ng-class="{ 'active' : diatonicator._scale == scale.name}">
+                                <span class="text scale-text">{{scale.name}}</span>
+                            </div>
+
+                            <div class="state">
+                                <h4>Tonic: {{diatonicator._tonic}}</h4>
+                                <h4>Mode: {{diatonicator._scale}}</h4>
+                                <h4>Scale Type: {{diatonicator._scaleTypeName}}</h4>
+                                
+                                <h4>Chord: <span class="note-label results-notes" ng-repeat="note in diatonicator.activeNotes">{{note}} </span></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="results-wrapper">
+                            <div class="chord-results">
+                                <div class="chord" ng-repeat="chord in diatonicator.results">
+                                    <button type="button" class="btn btn-secondary" ng-click="diatonicator.pickChord(chord)" ng-class="{ 'active' : diatonicator.activeChord == chord}">{{chord.interval}}<span class="name">{{chord.name}}</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="staff-wrapper">
+                            <div id="notation"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row content footer">
+                <div class="col-md-10 col-md-offset-2">
+                    <p class="description">{{diatonicator.description}}</p>
+                    
+                    <p class="description" ng-repeat="link in diatonicator.links">
+                        <a href="{{link.link}}" >{{link.text}}</a>
+                    </p>
+                    <p class="description">{{diatonicator.disclaimer}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container mobile">
+
+            <div class="row col-sm-12">
+                <div class="dropdown-wrapper col-sm-6">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Choose Tonic</button>
+                    <div class="dropdown-menu">
+                        <div>
+                            <a ng-repeat="tonic in diatonicator._tonics" ng-click="diatonicator.setTonic(tonic.name)" href="#">{{tonic.name}}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown-wrapper col-sm-6">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Choose Mode</button>
+                    <div class="dropdown-menu">
+                        <div>
+                            <a ng-repeat="scale in diatonicator._scales" ng-click="diatonicator.handleScaleClick(scale.name)" href="#">{{scale.name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="results-wrapper">
+                    <div class="chord-results">
+                        <div class="chord" ng-repeat="chord in diatonicator.results">
+                            <button type="button" class="btn btn-secondary" ng-click="diatonicator.pickChord(chord)">{{chord.interval}}<span class="name">{{chord.name}}</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="staff-wrapper">
+                    <div id="notation"></div>
+                </div>
+
+                <div class="state col-md-12">
+                    <h4>Tonic: {{diatonicator._tonic}}</h4>
+                    <h4>Mode: {{diatonicator._scale}}</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
